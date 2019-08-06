@@ -1,0 +1,12 @@
+
+
+- we need to install "node-sass" package to run the scss file
+
+- We need to install "react-router-dom" to work with router and navigations in react 
+
+- when using router, if we need router props in child component then we need to use "withRouter" component of react router dom which is higher order compoent which provides all url or router props directly to child component and we don't need to pass it down from parent component page 
+
+- for any babel related error put this ins package.json file 
+"resolutions": {
+    "babel-jest": "24.7.1"
+  },
