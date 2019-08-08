@@ -10,3 +10,36 @@
 "resolutions": {
     "babel-jest": "24.7.1"
   },
+
+  - We are using Firebase for authenticate and bit of storage
+
+  - To use firebase we have to install firebase package into our application and also need to sign up and sign in to firebase site and create new proejct  
+
+firebase project name 
+  crwn-clothing
+
+  crwn-db = app name 
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDs7zutgsZyPhYoD7ALhBCUb9UHYeeEufI",
+    authDomain: "crwn-clothing-53f47.firebaseapp.com",
+    databaseURL: "https://crwn-clothing-53f47.firebaseio.com",
+    projectId: "crwn-clothing-53f47",
+    storageBucket: "",
+    messagingSenderId: "245082220964",
+    appId: "1:245082220964:web:a3c4aad33394e04b"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+sign in forms and firebase settings code required to integrate 
+
+84. Google Sign In Authentication 3
