@@ -43,3 +43,11 @@ firebase project name
 sign in forms and firebase settings code required to integrate 
 
 84. Google Sign In Authentication 3
+
+next needs to work on App.js and firebase utitlity js file 
+
+then we gonna work on sign up component and then apply sign up style 
+
+after that we have to bring sign up compoenent into main component 
+
+implemented firebase utils 
