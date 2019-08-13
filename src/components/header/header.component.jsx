@@ -33,6 +33,7 @@ const Header = ({ currentUser }) => (
   </div>
 );
 
+// here we get data from our reducer and here userReducer
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser
 });

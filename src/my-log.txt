@@ -100,4 +100,16 @@ import logger from "redux-logger";
 // to connect our App with redux store so that we can fetch state and update the state 
 import { connect } from "react-redux";
 
+lession-13
+- modification so that if user is logged in they should not be able to access signupsignin component 
+- UserAction types file 
 
+lession-14
+- setting up cart  component and adding it to header component style and log 
+- Cart dropdown component and place it in header 
+- setting up reducer action to hide show cart dropdown 
+
+lession 15
+- add to cart styling cusstom button style 
+- add button to collection item and change style of it 
+- cart item reducer 
