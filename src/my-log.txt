@@ -51,3 +51,53 @@ then we gonna work on sign up component and then apply sign up style
 after that we have to bring sign up compoenent into main component 
 
 implemented firebase utils 
+
+LOOK BACK FROM HERE TO REVIEW SOME OF REACT CONCEPTS VIDEO AND SOME OF FIREBASE CONCEPTS VIDEOS
+BEFORE WE MOVE ON TO REDUX review the code from start to firebase 
+
+
+
+
+REDUX 
+- is the library that makes the state management easier not only for react but any tools that we use 
+
+  WHY 
+  - Good for Managing large state 
+  - USerful for sharing data between Components/Containers
+  - Predictable state management using the 3 principle 
+    1. Single source of truth
+      2. State is read only
+        3. Changes using pure function 
+
+          middleware
+  ACTION     -->     ROOT REDUCER --> STORE --> DOM CHANGES
+
+  FLUX PATTERN
+
+  ACTION --> DISPATCHER --> STORE --> VIEW 
+  HAving an action and dispatcher which dispatches this action to the store which is our state which updates our view, one way data flow 
+  FLUX PATTERN - UNIDIRECTIONAL DATA FLOW 
+
+  REDUX === this.state [React]
+
+$ npm install redux redux-logger react-redux [we need these 3 library]
+
+98 setting up redux 1 [can be watched again to understand strcuture of redux set up]
+
+connect()() is higer order component that gets either one of those 2 functions 
+its gonna work like, (connect())() so here we are  connecting response of first connect call to second ()
+
+// from index.js, wrap our enire application with Provider so that we can pass store object and can use it throuhout our application 
+import { Provider } from "react-redux";
+
+// from root-rducer.js file to combine all of our application reducers 
+import { combineReducers } from "redux";
+
+// from store.js to create store object, to apply middleware and imported logger middleware
+import { createStore, applyMiddleware } from "redux";
+import logger from "redux-logger";
+
+// to connect our App with redux store so that we can fetch state and update the state 
+import { connect } from "react-redux";
+
+
