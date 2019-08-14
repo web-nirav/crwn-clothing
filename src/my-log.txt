@@ -109,7 +109,20 @@ lession-14
 - Cart dropdown component and place it in header 
 - setting up reducer action to hide show cart dropdown 
 
+continue from 107 
+
 lession 15
 - add to cart styling cusstom button style 
 - add button to collection item and change style of it 
 - cart item reducer 
+
+lession 16 
+- adding item to cart and also adding utility function to add item to cartitems array and increase quantity property 
+
+-STEPS to follow for any action-reducer functionality
+  start with reducer by defining initial state and then checking type of action and return value
+  then go to define type and define action function 
+  then go to compoenent and apply mapStateToProps or mapDispatchToProps 
+
+  lession 17 
+  - create cart item component for our cart and connect cart component to cart reducer 
