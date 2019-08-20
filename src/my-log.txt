@@ -126,3 +126,39 @@ lession 16
 
   lession 17 
   - create cart item component for our cart and connect cart component to cart reducer 
+
+lession 18
+started from 112 
+
+113 add reselect library 
+npm i reselect
+
+updating our application with reselect replaced cart selector 
+
+lesson 19 
+
+user selector 
+
+116 
+0, false, undefined, null, NaN, "" evaluates to false 
+condition to cart drop down to show message and checkout button click redirect 
+
+117 
+test card details 
+4242 4242 4242 4242,  1/20, 123 
+
+120
+added checkout page, checkout item component and updated cart to use selectors from reselect
+
+selectors using reselect package is like using accessors/getters 
+
+
+ 
+
+ALL references links for details reviews
+
+https://react-redux.js.org/api/connect
+
+https://www.w3schools.com/charsets/ref_utf_dingbats.asp
+
+https://www.npmjs.com/package/reselect
