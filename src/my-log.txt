@@ -144,16 +144,27 @@ user selector
 condition to cart drop down to show message and checkout button click redirect 
 
 117 
-test card details 
-4242 4242 4242 4242,  1/20, 123 
+
 
 120
 added checkout page, checkout item component and updated cart to use selectors from reselect
 
 selectors using reselect package is like using accessors/getters 
 
+lession 20 21 22
+remove itesm from cart and checkout page 
 
+123 - 124 Redux Persist
+  npm i redux-persist 
  
+ setting up redux persistor and some configuration so that we can locally store data using this library so that we don't have to manually do it everytime
+
+ 125 126 127 
+ here we are just moving Directory state, Collection state to redux so that at the time of testing it can be helpful and its pratice of overall flow 
+and at the end we just create new collection overview compoenent for our next lessons of advance routing because now we will use our shop page to have route landing code 
+
+
+
 
 ALL references links for details reviews
 
@@ -162,3 +173,6 @@ https://react-redux.js.org/api/connect
 https://www.w3schools.com/charsets/ref_utf_dingbats.asp
 
 https://www.npmjs.com/package/reselect
+
+test card details 
+4242 4242 4242 4242,  1/20, 123 
