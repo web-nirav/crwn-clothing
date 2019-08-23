@@ -163,6 +163,7 @@ remove itesm from cart and checkout page
  here we are just moving Directory state, Collection state to redux so that at the time of testing it can be helpful and its pratice of overall flow 
 and at the end we just create new collection overview compoenent for our next lessons of advance routing because now we will use our shop page to have route landing code 
 
+Data Normalization => storing the list of items in an object instead of an array called data normalization because it make searching faster by dyrectly accessing object element using its key 
 
 
 
