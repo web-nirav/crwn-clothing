@@ -170,6 +170,19 @@ from 136 to 139
 for it we have to just install package as below,
 $> npm i react-stripe-checkout 
 
+Section 13: Master Project: Deploying to Production 
+from 140 to 144 
+
+$> heroku --version
+$> heroku login [provide login credentials]
+$> heroku create [PROJECT_NAME] --buildpack https://github.com/mars/create-react-app-buildpack.git
+$> git push heroku master
+$> 
+$> 
+
+
+
+
 ALL references links for details reviews
 
 https://react-redux.js.org/api/connect
