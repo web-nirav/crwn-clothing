@@ -165,7 +165,10 @@ and at the end we just create new collection overview compoenent for our next le
 
 Data Normalization => storing the list of items in an object instead of an array called data normalization because it make searching faster by dyrectly accessing object element using its key 
 
-
+Section 13: Master Project: Stripe Payments Part 1
+from 136 to 139 
+for it we have to just install package as below,
+$> npm i react-stripe-checkout 
 
 ALL references links for details reviews
 
