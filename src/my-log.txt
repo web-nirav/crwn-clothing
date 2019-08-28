@@ -170,7 +170,7 @@ from 136 to 139
 for it we have to just install package as below,
 $> npm i react-stripe-checkout 
 
-Section 13: Master Project: Deploying to Production 
+Section 14: Master Project: Deploying to Production 
 from 140 to 144 
 
 $> heroku --version
@@ -180,8 +180,24 @@ $> git push heroku master
 $> 
 $> 
 
+during deployment i got one error is about yarn.lock.json and package-lock.json files are there  on github so i had to remove it form local as well from github mainly which heroku takes to deploy. 
+
+so any time you need to update the code on heroku you have to update in local -> push to git hub and then -> push to heroku  
+thats it 
 
 
+Section 15: Master Project: CSS in JS styled-components 
+
+from 145 - 151 
+
+BEFORE START POSSIBLEY THAKE A BACK UP OR NOTE THE COMMIT LEVEL SO ANYTIME IF YOU WANNA HAVE A LOOK OF THE CODE WITHOUT STYLED COMPONENT YOU CAN EASILY CHECK IT OUT 
+
+$> npm i styled-components
+
+homepage and header component , custom button styles 
+
+usage of css function to add common styles for different styled component 
+but we can remove it by using "as" property when we use our style component 
 
 ALL references links for details reviews
 
