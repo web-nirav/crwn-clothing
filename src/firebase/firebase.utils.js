@@ -21,7 +21,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   // fetching user reference object from firestore using querying function of firebase like we learned in firestore video
   // for example, firestore.collection('users').doc('id').collection.('post').doc('id')
   // firestore.doc('user/id/post/id')
-  const userRef = firestore.doc(`user/${userAuth.uid}`);
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
 
   // after that we will fetch user Snapsot using user Ref using which we can check if user is exists in firebase database or not ?
   // its like way of querying the users collection on firbase database to fetch user of specific id
@@ -43,6 +43,40 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
 
   return userRef;
+};
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  // this will create our collectionRef object
+  const collectionRef = firestore.collection(collectionKey);
+  // console.log(collectionRef);
+  const batch = firestore.batch();
+  objectsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    // console.log(newDocRef);
+    // we coud normally do is newDocRef.set() like we did for user creation above but to protect from integruption and data miss match we use batch
+    batch.set(newDocRef, obj);
+  });
+  return await batch.commit();
+};
+
+export const convertCollectionSnaphotToMap = collections => {
+  const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    };
+  });
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {});
 };
 
 export const auth = firebase.auth();
