@@ -199,6 +199,14 @@ homepage and header component , custom button styles
 usage of css function to add common styles for different styled component 
 but we can remove it by using "as" property when we use our style component 
 
+its a middleware which checks to see if there is any function return then it takes it and utilise it 
+npm i redux-thunk 
+
+
+
+
+
+
 ALL references links for details reviews
 
 https://react-redux.js.org/api/connect
@@ -209,6 +217,7 @@ https://www.npmjs.com/package/reselect
 
 test card details 
 4242 4242 4242 4242,  1/20, 123 
+
 
 
 *444*24*0#

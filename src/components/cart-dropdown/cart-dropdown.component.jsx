@@ -3,34 +3,41 @@ import { connect } from "react-redux";
 // import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router-dom";
 
-import CustomButton from "../custom-button/custom-button.component";
+// import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
 import { selectCartItems } from "../../redux/cart/cart.selectors";
 import { toggleCartHidden } from "../../redux/cart/cart.actions.js";
 
-import "./cart-dropdown.styles.scss";
+// import "./cart-dropdown.styles.scss";
 
-// if we does not pass second argument to connect method then it will always pass dispatch method which we will accept in below CartDowndon component method and also using withRouter compoenent we get history prop
+import {
+  CartDropdownContainer,
+  EmptyMessageContainer,
+  CartItemsContainer,
+  CartDropdownButton
+} from "./cart-dropdown.styles";
+
+// if we does not pass second argument to connect method then it will always pass dispatch method which we will accept in below CartDowndon component method and also using withRouter component we get history prop
 const CartDropdown = ({ cartItems, history, dispatch }) => (
-  <div className="cart-dropdown">
-    <div className="cart-items">
+  <CartDropdownContainer>
+    <CartItemsContainer>
       {cartItems.length ? (
         cartItems.map(cartItem => (
           <CartItem key={cartItem.id} item={cartItem} />
         ))
       ) : (
-        <span className="empty-message">Your cart is empty</span>
+        <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
       )}
-    </div>
-    <CustomButton
+    </CartItemsContainer>
+    <CartDropdownButton
       onClick={() => {
         history.push("/checkout");
         dispatch(toggleCartHidden());
       }}
     >
       GO TO CHECKOUT
-    </CustomButton>
-  </div>
+    </CartDropdownButton>
+  </CartDropdownContainer>
 );
 
 const mapStateToProps = state => ({
