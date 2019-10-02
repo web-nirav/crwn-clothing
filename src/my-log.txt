@@ -200,11 +200,83 @@ usage of css function to add common styles for different styled component
 but we can remove it by using "as" property when we use our style component 
 
 its a middleware which checks to see if there is any function return then it takes it and utilise it 
+thunk is what allows us to dipatch redux function instead of just actions or action objects 
 npm i redux-thunk 
 
 
+Second 20 Master Project: Redux-Saga 
+172 Introduction to Sagas 
+  - Asynchonous API requests 
+
+Sagas are the functions that is listening for some condition to execute and once that condition true saga/function executes 
+Also Other Sagas can listen for sagas to exectue
+they can call any api or call back end fetch data use that data and dispatch action to update the reducers 
+THE MAIN IDEA WITH THE SAGAS IS THAT THEY HANDLE THIS IDEA OF SIDE EFFECTS,
+all side effects are either api call to our back end - some kind of Asynchonous code OORR something that triggers IMPURE REACTION 
+
+PURE FUNCTION 
+const addNumber = (a, b) => a + b;
+addNumber(3, 4)
+
+impure function takes same arguments and return differnt result 
+
+ let num = 10; 
+ const addNewNumber = (a,b) => num+a+b;
+ addNewNumber(2,5); output = 17
+ num = 13;
+ addNewNumber(2,5); output = 20
+
+ so this is why its impure funtion (its impure because it does not return exact same value regardless of same arguments)
+ Any async activity that happen to app not related to component state related to application, should be moved to saga 
+ which makes it powerfull
+ just like an API call inside compoenentDidMount()
+
+173 Generator function
+
+building block of Saga which is Generator function 
+Generator function, resembles async-await not axactly asyn-await 
+Generator function stops execution whenever they see specific key that is "yield"
+
+function* gen(){
+    console.log('a');
+    console.log('b');
+}
+
+const g = gen(); // returns generator object and does not execute gen function 
+g.next()
+a
+b
+{value: undefined, done: true} // done prop means if anything is still there to run or not inside gen function 
+
+function* gen(i){
+  yield i;
+  yield i+10;
+}
+
+const g = gen(5)
+const gObj = g.next();
+gObj; // output to {value: 5, done: false} 
+
+here done is false meaning that there is more that can be executed in gen function 
+
+const jObj = g.next();
+jObj; // output to {value: 15, done: false}
+g.next(); 
+{value: undefined, done: true}
+
+for final g.next() call returns undefined in value and true in done but we can set final value by returning value from generator function like so,
+function* gen(i){
+  yield i;
+  yield i+10;
+  return 100;
+}
+
+so you can think of "yield" as, ability to pause the excution of function at some point
+this is the basis of sagas, Sagas work on this yield based format because they need to know and give us control over when we want to continue with an execution of the block of the code that we have written OR we wanna do something first
 
 
+switching collectionsOverview and collectionsPage to use containers HOC
+updating code to leverage containers for collections-overview and collection-page components
 
 
 ALL references links for details reviews
