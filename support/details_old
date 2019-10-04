@@ -1,0 +1,1074 @@
+
+
+
+
+
+..............................Corrections..............................
+so when we say trigger an alert what exactly should be done? how to trigger an alert something like sending email or 
+
+..............................Marcus Comments..............................
+I would like you to add authentication to the site. https://sync-center.cykelkraft.se/ is public for everyone knowing the url so we need users to login to protect our data.
+
+Scheduler::call()->withoutOverlapping();
+
+..............................Task List..............................
+
+- job_transactions
+	- id
+	- job_id
+	- parent_id
+	- action [start, end]
+	- created_at
+	- success [true, false]
+	- message
+
+- job
+	- id
+	- name
+	- created_at
+	- description
+	- status
+
+GUI at cockpit
+- list of job_transactions and jobs
+- Add/Edit Form view of jobs
+- Job details view
+
+Flow
+- Job and JobTransaction models 
+- create two methods for start and end transaction
+- Predefine jobs entries
+- call start transaction method before each command starts
+- call end transaction once command execution finishes
+
+
+
+
+..............................Queries..............................
+
+
+
+- jobs
+	- It says, "Simple grid ordered by code ASC." but no field called code ?
+
+
+
+
+
+
+Posted Sales Invoice Header will appear in change log as entries for Table_No 112. 
+Posted Sales Invoice Line will appear in change log as entries for Table_No 113.
+Both activated in test and I have posted two sales invoices.
+Sales Return you do already have info about, right? 
+The headers appear in Table_No = 36 and the lines in Table_No = 37.
+
+
+I would like you to add authentication to the site. https://sync-center.cykelkraft.se/ is public for everyone knowing the url so we need users to login to protect our data.
+
+
+
+One thing that I think should be done is to separate the import of SalesOrderHeaders and SalesOrderLines. Why? Let's play with the example that order "WS123" are created. That will create change log entries for Table_No = 36, but also for Table_No = 37. If we based on change on Table_No = 36 imports both SalesOrderHeaders and SalesOrderLines, we will import SalesOrderLines both when syncing Table_No = 36 and Table_No = 37.
+
+Do you agree? 
+Also, a change in the table 37 does not imply that there is a change in table 36 and the other way around.
+
+
+
+
+
+
+
+Task List
+
+3 new imports
+"import:posted_sales_invoice_header" 
+"import:posted_sales_invoice_line" 
+"import:sales_return_line" 
+
+then use 
+table no 112  posted_sales_invoice_header, 
+         113  posted_sales_invoice_line
+          37  sales_return_line with document type similar to sales order line
+
+PostedSalesInvoiceHeaders: 'No' is the key to search for.
+PostedSalesInvoiceLines: Document_No shall be searched for. It seems to return an array of lines per Document_No.
+SalesReturnLines: Use where('MYORDERNO', 'Document_No')
+it will return all lines for MYORDERNO
+
+No in table 112 corresponds to Document_No in table 113
+
+
+
+
+So about next thing:
+
+Now you are finishing the work with artisan sync:delta.
+We alse need a command artisan sync:full that can be used for each table/model
+For a start, we need to set up full sync and delta sync for these table/models:
+
+SalesOrders(Headers)
+SalesOrderLines
+PostedSalesInvoices(Headers)
+PostedSalesInvoiceLines
+SalesReturnLines
+
+DeltaSyncPostedSalesInvoices
+DeltaSyncPostedSalesInvoiceLines
+DeltaSyncSalesReturnLines
+
+Also, the work you did for cockpit (fetch all orders that have a given sku in it) shall fetch data from sync-center API instead of NAV-API.
+
+
+On SalesOrderLines the Document_No and Line_No in combination is unique.
+
+DeltaSyncLog
+
+sync-delta with class name changes with table name and class name and transfer specific table/model logic to its own file and call function for it
+
+then create new sync-full
+
+
+
+
+
+
+
+For the delta sync
+1. make an artisan command retrieve new change log entries from NAV api and store these entries in table change_log_entries in local database
+
+2. make an artisan command with "page" as a parameter, and for each page translate from the change_log_entries what needs to be done to get that page in sync. When an entry in the table change_log_entries have been processed and the page has been synced: set the is_synced = true
+>> you mean in command if we pass, page=
+
+
+- Do we have to check for any unique field as if same command will run more than once then it will make duplicate change log entries
+- For Type_of_Change = Modification, we sometimes don'e get values for Old_Value and Old_Value_Local fields
+
+CLIENT REPORT
+- Work on api work to fetch data from NAV api to new sync center repo, discuss with client about requirement and related queries
+- Worked on delta-sync functionality for importing change log data - Started working delta-sync for updating sales order and sales order line based on change log data in local, Discuss with client about queries
+- Work on Sync center import and sync change log for sales order and related sales order lines, Also Did some correction based on client suggestion in sync functionality
+
+
+
+		// First fetch all change long entries table applying is_synced = false, table_no = 36
+        // 
+        // Loop through each record and check 
+        // 
+        // fetch record using primary_key_field_2_value in NO field find('TESTUNIFAUN2', 'No')
+        // 
+        // If record found in NAV
+        //      If sales order exist in local
+        //          update sales order in local
+        //      else
+        //          create new sales order in local
+        // else
+        //      If  sales order exist in local
+        //          Delete from local sales order table and related order lines too
+        // update is_synced = true
+        
+        /*SELECT DISTINCT(primary_key_field_2_value) FROM `change_log_entries`  
+            WHERE is_synced = 0 AND table_no = 36
+            ORDER BY `change_log_entries`.`primary_key_field_2_value` DESC*/
+
+
+change_log_entries table fields mappings
+
+	id: increment
+    key (Key)
+    entry_no (Entry_No)
+    date_and_time (Date_and_Time)
+    user_id (User_ID)
+    table_no (Table_No)
+
+    table_caption (Table_Caption)
+    primary_key (Primary_Key)
+    primary_key_field_1_no (Primary_Key_Field_1_No)
+    primary_key_field_1_caption (Primary_Key_Field_1_Caption)
+    primary_key_field_1_value (Primary_Key_Field_1_Value)
+    primary_key_field_2_no (Primary_Key_Field_2_No)
+    primary_key_field_2_caption (Primary_Key_Field_2_Caption)
+
+    primary_key_field_2_value (Primary_Key_Field_2_Value)
+    primary_key_field_3_no (Primary_Key_Field_3_No)
+    primary_key_field_3_caption (Primary_Key_Field_3_Caption)
+    primary_key_field_3_value (Primary_Key_Field_3_Value)
+    field_no (Field_No)
+    field_caption (Field_Caption)
+    type_of_change (Type_of_Change)
+    old_value (Old_Value)
+    old_value_local (Old_Value_Local)
+    new_value (New_Value)
+    new_value_local (New_Value_Local)
+    is_synced: boolean
+
+
+
+Task List
+
+- create a command to fetch and load data to local database
+- create a simple form to accept SKU number to search products from DB
+
+
+On SalesOrder header:
+
+No = order_id
+Bill_to_customer_No = customer_id
+Bill_to_customer_Name = customer_name
+Bill_to_Address = customer_address
+Bill_to_Post_Code = customer_post_code
+Bill_to_City = customer_city
+Order_Date = order_date
+Shipment_Date = shipment_date
+Completely_Reserved = completely_reserved
+Contains_Bike = contains_bike
+Status = status (edited)
+
+
+On SalesOrder lines:
+
+Type = type
+No = sku
+Description = description
+Location_Code = location
+Quantity = qty
+Reserved_Quantity = reserved_qty
+Quantity_Shipped = shipped_qty
+Shipment_Date = shipment_date (edited)
+
+
+
+Queries
+- what are the possible order status values?, for example one is "Open"
+- what are the possible product Type values?, for example one is "Resource"
+
+
+ok one Type value is "_blank_" so should i consider it as empty or i have make entry as this value "_blank_" <-- it should be null
+what are the possible order status values?, for example one is "Open"
+- what are the possible product Type values?, for example one is "Resource" <-- just use what the API gives you, but lowercase it (Resource = resource)
+
+for orders, order_id is the unique key
+and during import, please make sure that if we UPDATE the old version if we find one that already exist. I.e don't skip it, because it might have changed
+update = including order lines
+
+for orders we can update as we have unique key that is order_id
+
+but we may not update order lines as we don't have unique key for that so i think I may delete order lines if I find existing order_id and make new entries for it
+
+
+
+12 Feb 2019
+
+- list customers, with pagging sorting, filtering like magento grid like victor gave,
+- using invoice address type id = 1
+- store country data in local db and use it to display country in list
+
+-------------------worked on swagger implementation in swagger_doc branch------------------------------
+
+app/Http/Controllers/Api/AuthController.php
+app/Http/Controllers/Api/PointsContainerController.php
+app/Swagger/Annotations.php
+resources/lang/en/message.php
+storage/api-docs/api-docs.json
+
+18 Feb 2019
+
+https://help.nintex.com/en-us/insight/OData/HE_CON_ODATAQueryCheatSheet.htm
+
+https://servicesstage.enferno.se/query/2.0/Customers/Customers?$top=20&$skip=0&$count=true&$orderby=Created desc
+&$expand=Addresses($filter=TypeId eq 1)
+&$filter=true 
+and CustomerCode eq 'WS0733950940' 
+and FirstName eq 'Elsa Emine' 
+and LastName eq 'Kassman' 
+and contains(EmailAddress, 'kassman') 
+and contains(PhoneNumber, '0733950940') 
+and Addresses/any(p: p/AddressLine1 eq 'Sankt Göransgatan 95' ) 
+and Addresses/any(p: p/ZipCode eq '11245' ) 
+and Addresses/any(p: p/City eq 'Stockholm' ) 
+and Addresses/any(p: p/CountryId eq 1 )
+
+https://servicesstage.enferno.se/query/2.0/Customers/Customers?$select=Id&$expand=Addresses&$filter=Addresses/any(a:a/ZipCode eq '54330') 
+and Addresses/any(a:contains(a/City,'ibro'))
+
+https://servicesstage.enferno.se/query/2.0/Customers/Customers?
+$top=20&&$count=true
+&$orderby=Created desc
+&$expand=Addresses($filter=TypeId eq 1)
+&$filter=true 
+and contains(EmailAddress, 'me.com') 
+and Addresses/any(a:contains(a/City,'Stockholm'))
+
+
+https://servicesstage.enferno.se/query/2.0/Customers/Customers?
+$top=20&&$count=true
+&$orderby=ZipCode desc
+&$expand=Addresses($filter=TypeId eq 1)
+&$filter=true 
+and contains(EmailAddress, 'me.com') 
+and Addresses/any(a:contains(a/City,'Stockholm'))
+
+
+1. sometimes horizontal scroll is showing - it should never show
+RESOLVED
+2. please add column sorting
+DONE
+3. points still not possible to add
+RESOLVED
+
+
+1. user should be able to add negative points
+DONE
+2. display more fields in transaction history table: comment, created_by, created_at
+DONE
+
+https://cockpit.cykelkraft.se/find/customers/T100001
+Whoops, looks like something went wrong.
+DONE 
+can you please change css class "container"  to "container-fluid"
+DONE
+
+also add class 'table-sm' to customer result table
+DONE
+also add class="form-control form-control-sm" to search fields in table
+DONE
+make entire row clickable and remove action icon "eye"
+DONE
+
+for tomorrow:
+- finalize cosmetic changes (input fields etc)
+DONE
+- let's rearrange the customer detail page and put everything regarding points under one header "Points", so the display order and headers would be:
+- -- Customer Data (the forms, no header needed)
+- -- Invoices (list all invoices: http://order.cykelkraft.se/customer/WS0707447736/invoices - no auth needed at the moment, will be added later)
+- -- Active Orders (list all active orders: http://order.cykelkraft.se/customer/WS0707447736/orders - no auth atm)
+- -- Points
+- ---- Balance
+- ---- Add points (also add comment field)
+- ---- Transaction history
+DONE ALL
+
+• For each section please load asynchronically and put loader icon before it's fully loaded.
+DONE
+
+• If you haven't done already, please set all api urls in one config so it's easy for us to change later. at the moment we are using both stage servers and live mixed.
+DONE
+Each row should include: order_id/invoice_id, created_at, shipment_date, total, address. then if "more info" button is clicked, extended information should fold out with all fields and extended lines.
+DONE
+
+
+4.2. list customer orders - Victor will provide different api for orders
+	DONE
+
+- one is to finalize points api, we're missing some data from ERP right now
+DONE
+
+so points should be manually added for sale too
+manual, sale, usage <- these should always require points
+sale and usage <- requires entity_id also
+DONE
+manual <- requires comment
+DONE
+
+4.1. print all available customer information which should also be editable using storm api + NAV api + intercom api
+DONE
+
+18 Mar
+- I have also reviewed the api documentation about fetching the mail template list and specific mail template content.
+
+19 Mar 
+- Reviewing dot mailer api for campaign send and fetching template of specific id also discussed with client about how to implement mail sending functions. discussed live chat support of dot mailer for api rate limiting.
+- 1 hour meeting of leave policy 
+
+20 Mar
+- 2 R&D of Zapier integration after taking understanding from Viral
+- Working on project to integrate order confirmation mail and storing it to local DB and use to set up body and send to recipient.
+
+21 Mar
+- HOLI HOLIDAY
+
+22 Mar
+- accept orderId and fetch all order data using storm api,
+- mock the data using transform function which we can change in future and not to affect original function
+- get template from db, integrate with dynamic data and send to user 
+
+- 3 hours Attended meeting for Udaipur trip event participation
+
+customerName = {{var order.getCustomerName()}}
+orderId =  {{var order.increment_id}} 
+orderCreatedDate =  {{var order.getCreatedAtFormated(‘long’)}}
+paymentMethod =  {{var payment_html}} 
+shippingDescription =  {{var order.getShippingDescription()}} 
+shippingName =  {{var order.getShippingAddress().getName()}}
+shippingStreet1 =  {{var order.getShippingAddress().getStreet1()}}
+shippingPostCode =  {{var order.getShippingAddress().getPostcode()}}
+shippingCity =  {{var order.getShippingAddress().getCity()}}
+shippingCountryName = {{var order.getShippingAddress().getCountryModel().getName()}}
+shippingTelephone = {{var order.getShippingAddress().getTelephone()}}
+shipmentDate = {{Var order.getShipmentDate()}} 
+salesEmailOrderItems = {{layout handle="sales_email_order_items" order=$order}}  
+-- order item line list - list of orderred items in one order with name.sku,qty,price etc.
+customerEmail = {{var customer.email}} 
+
+
+[
+  {
+    "no": "103034",
+    "order_no": "W1037477",
+    "posting_date": "2015-06-01",
+    "total_amount_incl_vat": "458.000"
+  },
+  {
+    "no": "104068",
+    "order_no": "W1037477",
+    "posting_date": "2015-06-15",
+    "total_amount_incl_vat": "59.000"
+  }
+]
+
+
+[
+  {
+    "transaction_type": {
+      "name": "sales_invoice"
+    },
+    "created_at": "2015-06-15 00:00:00",
+    "points": "59.000"
+  },
+  {
+    "transaction_type": {
+      "name": "sales_invoice"
+    },
+    "created_at": "2015-06-01 00:00:00",
+    "points": "458.000"
+  },
+  {
+    "id": 12,
+    "customer_id": "42208",
+    "event_id": 5,
+    "entity_id": null,
+    "comment": "Compensation of broken delivery.",
+    "points": 10,
+    "created_by": "Bharat",
+    "created_at": "2018-12-12 00:54:30",
+    "updated_at": "2018-12-12 00:54:30",
+    "deleted_at": null,
+    "transaction_type": {
+      "id": 5,
+      "name": "manual"
+    }
+  },
+  {
+    "id": 15,
+    "customer_id": "42208",
+    "event_id": 5,
+    "entity_id": null,
+    "comment": "Compensation of broken delivery.",
+    "points": 100,
+    "created_by": "Nirav",
+    "created_at": "2018-12-13 02:16:50",
+    "updated_at": "2018-12-13 02:16:50",
+    "deleted_at": null,
+    "transaction_type": {
+      "id": 5,
+      "name": "manual"
+    }
+  },
+  {
+    "id": 18,
+    "customer_id": "42208",
+    "event_id": 3,
+    "entity_id": "151846",
+    "comment": "Compensation of broken delivery.",
+    "points": 50,
+    "created_by": "Nirav",
+    "created_at": "2018-12-13 19:14:55",
+    "updated_at": "2018-12-13 19:14:55",
+    "deleted_at": null,
+    "transaction_type": {
+      "id": 3,
+      "name": "newsletter.signup"
+    }
+  },
+  {
+    "id": 20,
+    "customer_id": "42208",
+    "event_id": 1,
+    "entity_id": "1854",
+    "comment": null,
+    "points": 100,
+    "created_by": "Nirav",
+    "created_at": "2018-12-13 19:15:36",
+    "updated_at": "2018-12-13 19:15:36",
+    "deleted_at": null,
+    "transaction_type": {
+      "id": 1,
+      "name": "review.create"
+    }
+  },
+
+
+23 Apr
+	- Estimation of HCG - Admin feature listing - 1
+	- Discuss new point of order sync functionality with Victor 
+
+	Here is the idea to sync the order data,
+	Whenever the event is fired from front end based on the topic value received on our broker end point, the registered listener will call and placed in queue 
+	whenever the queue is processed then the data we get from request will be used to send to dotmailer api to sync the data or order 
+	now here we have two options 
+	1, call add order data 
+	2, update order data 
+	Let me know that if the order data can be available in dotmailer server then we have to send update request only
+	if not then we have to check if order is exist then we have to use add order data end point 
+
+	so let me know, what will be the case of add or edit end point? 
+
+24 Apr
+	- Estimation of HCG - Admin hours and api hours 2
+	- Record fund email sending functionalty with server deployment 2 hours 
+	- reviewing dotmailer documentation for order sync function set up in postman 
+
+25 Apr
+	- 2 Hour review book selling app features, discussing and explain to developer about it 
+	- 1 hour for record fund db entry
+	- Discuss one change
+
+26 Apr
+  - 2 Reviewing book selling app docs and planning on it 
+
+
+
+
+
+lets say for example 
+1)  {{var order.getCustomerName()}}
+2)  {{var order.increment_id}} 
+3)  {{var order.getCreatedAtFormated(‘long’)}}
+4)  {{var payment_html}} 
+5)  {{var order.getShippingDescription()}} 
+6)  {{var order.getShippingAddress().getName()}}
+7)  {{var order.getShippingAddress().getStreet1()}}
+8)  {{var order.getShippingAddress().getPostcode()}}
+9)  {{var order.getShippingAddress().getCity()}}
+10) {{var order.getShippingAddress().getCountryModel().getName()}}
+11) {{var order.getShippingAddress().getTelephone()}}<
+12) {{Var order.getShipmentDate()}} 
+13) {{layout handle="sales_email_order_items" order=$order}}  
+-- order item line list - list of orderred items in one order with name.sku,qty,price etc.
+14) {{var customer.email}}
+
+1) $_item->getName()
+2) $_item->getDescription() >> like if configurable product add bike size or configurable attribute and it' selection in order
+3) $this->getSku($_item); >> getSku
+4) $_item->getQtyOrdered();
+5) $_item->getRowTotal()
+
+
+
+06 May
+No 
+07 May 
+- First we will create one end point on broker repo 
+- from that end point we will accept event and based on mapping listener will called 
+- in that listner, we will accept Address book id and email address to be added 
+- Then we will take those data and call dot mailer api to add email to given address book
+- For cokpit repo, under customer section we will give one button to unsubscribe from news letter 
+- from that form admin can add email address to unsubscribe 
+- we will use same api we will create on broker repo to add email address to unsubscribe address book 
+
+Let me know about this development plan, If all good then I will implement it
+
+08 May
+- R&D to find dotmailer api to fetch address book from email address but didn't find 
+instead found api to get address books based on contact id 
+
+09 May 
+Hi for adding email to "Subscribers" address bookId will create direct end point or it will be also on some event?
+you need to create direct endpoint, totally isolated code so we can send it to front end team
+
+yes, because if contact was previously in unsubscribe address book and then suddenly wants to subscribe - we need to remove contact from unsubscribe as this is the last rule.
+
+10 May 
+
+We have a POS system called Sitoo in our stores. POS means Point Of Sales and is the application we use at the checkout registrars in the stores.
+Sitoo will call URL https://sync-center.cykelkraft.se/sitoo/contacts with different contents depending on the action
+
+1. GET "https://sync-center.cykelkraft.se/sitoo/contacts?key=<email OR phone number>" - fetch customer by email or phone number and respond with only one customer if found.
+
+2. GET "https://sync-center.cykelkraft.se/sitoo/contacts/<contact_id>" - get customer by contact id
+
+3. POST "https://sync-center.cykelkraft.se/sitoo/contacts/" - add new customer
+
+4. PUT "https://sync-center.cykelkraft.se/sitoo/contacts/<contact_id>" - update existing customer
+
+so first setup this endpoint in sync center and once that's done we will add dummydata and respond with json arrays. once concept is working we will connect storm customer api and add real data.
+
+
+11 May 
+	finding contact id using one api and then delete it from unsubscribed address book
+
+12 May 
+
+16 May 
+- discuss the new changes done by client and working on new api end points for broker repo for front end team to use to add email to dotmailer address book
+- subscribe and unsubscribe end points on broker repo for front end guys 
+- after done need to update to trello and work on next card 
+
+
+	Cockpit repo checkbox logic 
+	- first we will find id of given email address and using id we will find the address book of it 
+	- we will check that address book id should be of subscribed address book's id then we will show checked checkbox if not then unchecked 
+	- when user submit the form, 
+		- if checkbox is selected, then we will call subscribe api of broker repo 
+		- else we will call unsubscribe api of broker repo 
+
+	finished with all above tasks and updated to client
+
+17 May 
+	- 1.5 H testing bookselling apis and provide suggestions
+
+	- Changes of broker newsletter api end point and applying passport authentication 
+
+	- 3:15 thi unilink admin 
+
+18 May 
+
+	3:30 - 5 = 1:30  api skeleton meeting 
+	all whole day working on admin modules of book selling app, institute, study interest masters 
+	
+	controller, formrequest, grid, repository, model, views , adminpanel lang file, 
+
+ payment settings: Braintree marchent account live/test details, 
+ Commission : Amount in dollar which credited in to Administrator account on each "Post a book" transaction, 
+ Admin Email : Application email sender ID
+
+
+GITHUB Recovery codes
+
+ personal access token now
+
+12bd385011965ae6dcb53fcd44ce2dd866d712b5
+
+ch4rb4e2pll76cqc
+
+
+39d68-3be85 
+a1d4c-26b67 
+31e9a-381bc 
+9f2a0-854c4 
+1da68-1e262 
+96b67-10fc5 
+032d3-e3a0b 
+6418f-37a7d 
+badc7-782a7 
+0b802-9a7ee 
+58098-12e92 
+c0ddd-847f1 
+219d4-0cedd 
+2f301-5f14c 
+c38ca-05f39 
+6e93c-54843
+
+
+03c53-0539c 
+63bc2-43817 
+2bace-9ffb7 
+09b12-6d546 
+976b7-6bd04 
+57ce2-c02ab 
+a0b7f-08a98 
+5ca2d-98109 
+bdbb5-a1af0 
+ae35c-c5016 
+e82b2-09458 
+9a051-5ab1c 
+24359-6a8e9 
+63004-d7936 
+57b2b-d16e4 
+42800-885fa
+
+
+/* 
+From DotMailerSendOrderConfirmationEmail listener 
+
+$url = config('constants.DOTMAILER_API.URL') . 'email';
+        $content = [
+           'ToAddresses'      => ['nirav.prajapati@indianic.com'],
+           'Subject'          => 'Your order has been confirmed on '.date('d-m-Y H:i:s'),
+           'FromAddress'      => 'orders@mycompany.com',
+           'HtmlContent'      => '',
+           'PlainTextContent' => 'Hi. This is to let you know that your order has now been dispatched. Thank you for business.'
+        ];
+        $response = getApiData('', ['auth' => [config('constants.DOTMAILER_API.USERNAME'), config('constants.DOTMAILER_API.PASSWORD')], 'json' => $content], 'POST', $url); */
+
+
+20 May 
+	- Subject Module master 3 hours 
+	- changes of subscribe unsubscribe endpoint and make event listener call 
+
+21 May 
+
+	also now i realize there's a function in RecordController.php named syncTemplates - this should also be removed. only record event should be used
+>> For this which event I have to use and listener name please?
+
+	- changes of response message based on the event and also changes of removing direct end point and placing event listener for subscribe and unsubscribe 
+	- similar for sync template  
+	- validating events and email 
+	
+
+22 May 
+
+	- discussing and doing changes of keeping same method for all events which is record and making listener call and test it on live 
+
+23 May 
+	- Discuss the functionality of dotmailer to be moved to sync center from each api call for each handle method 
+
+so for each handle method of broker event listener I will create new end point on sync center and new method for each end point right?
+
+for example,
+DotMailerNewsletterSubscribe -> handle method -> will call sync center end point "subscribe" => DotmailerController -> subscribe
+DotMailerNewsletterUnsubscribe -> handle method -> will call sync center end point "unsubscribe" => DotmailerController -> unsubscribe
+DoMailerSyncTemplates -> handle method -> will call sync center end point "sync-template" => DotmailerController -> syncTemplate
+
+	transfering dotmailer functionality from broker to sync center 
+
+24 May 
+
+- Working on moving functionality of dot mailer from broker repo to sync center repo 
+- Test functionality on local and also on live         
+
+
+
+
+
+	Working on some advance concepts using example set up like eloquent collection methods like map, filter, random, shuffle, prepend, chunk etc...
+	polymorphic relationships 
+	Products
+	Article
+	Comments - commentable 
+
+	Products 
+	id
+	name 
+
+	Article 
+	-id 
+	-title 
+
+	Photo
+	-id
+	-filename 
+
+	imageables
+	-photo_id
+	-imageable_id
+	-imageable_type
+
+
+
+
+
+- Need to find the way to automatically download the mail templates and store them in broker repo 
+	- Need to refresh all template in broker repo 
+	- Create one button(fetch changes from dot mailer) in cockpit which when click will call broker repo and then in turn broker repo will call dot mailer api and fetch all templates and store it to templates table 
+		- But here the issue is the place holder are replaced manually so those needs to be managed from dot mailer side when tempalte is created or updated?
+
+	- Broker repo api end point, sync-templates with topic=sync.templates request parameter 
+	- create an event in broker repo, "sync.templates" with listener "DotMailerSyncTemplate" which when triggered the listener's handle method will 
+	- in listeners handle method, first we will empty out all templates from table
+	- then we will call dotmailer api which will fetch and store all the templates 
+
+	first of all we have to change our templates table to add new template id field 
+	On Broker repo,
+	- First of all we can implement one function to refresh the templates table in broker repo
+		- In refresh process, we can first delete all templates from table and
+		- call and fetch dotmailer templates api and store them in table
+	- we will set up one end point which when hit we will call this function 
+	
+	On Cockpit repo,
+	- For daily auto update, we can create one command which we can schedule to run daily mid night at some time and which will call broker api 
+	- For manual update, we can provide button in admin which when clicked we can call same api 
+
+	So, this way with different event we can call same api to update templates 
+
+
+
+
+
+
+09 Sept
+	- Discuss client's feedback on some points 
+	
+	- 01-Business-Scheduler-Monthly-ERROR-2019-08-04
+		- Multiple employee sched. - We have put the check so if any employee is selected again then it wil not allow and show alert message.
+		- Responsive field adjusted - now it will calculate total duration based on End time changing 
+		- When I tested with many multiple employee it didn't take much time as compared to video 
+	- Employer's side comments are missing done 
+	- Business admin profile's page update timezone 
+	- Correction made but window functions are now missing.
+		- this was existing issues which is resolved now. 	
+
+10 Sept 
+
+	V-4, V-5 
+	- 03-Process-Jobs-Internal-Posting-and-Application-ADJUST-2019-07-17
+		- attachment should appear in new window 
+		- from value is not coming
+		- attachment field missing - active jobs applicant's list page
+		- Applicant and attachment missing - both listing and view page of Email Inbox
+
+	V1- Cash Collection Manager - auto calculation of grand total 
+
+	V2- Recaptcha - no correction required 
+	03-Process-Password-Recovery-ERROR-2019-07-17
+		-09 D) 0:00:44	Captcha picture selection
+
+	V-3 - need to check attachment in actual mail, from messages,  remove "successfully" etc and place it at top of the page 
+	01-Business-Jobs-Active-Email-ERROR-2019-07-17
+		-10 D) 0:00:44	Email attachment missing
+	- attachment issue resolved 
+	I have removed those extra words from send job mail functionality and place it at top of the page.
+
+	V-6 nothing in there 
+
+11 Sept 
+
+	V-1
+		- Cash Out Template - make all 17 default records for each business 
+			we can by default make an entry to existing table and Q can they edit those default entries?
+	Done 
+
+	V-2 Manage All Active Employees
+	04-Error-Business-Employees-Multiple-Positions-2019-08-02
+		16 D) 0:00:20	1 to many employee jobs
+	Need to check and see how we can show multiple positions in active employee's section and also need to see which things related to position 
+	- Let him explain about functionality because he might know what functionality is there instead of us taking look in coding everytime as he is explaining as he is knowing 
+
+
+	V-3
+	01-Business-Scheduler-Calendar-Icons-ERROR-2019-08-02
+		19 F) 0:00:29	Employees required
+		- check for -ve values in monthly scheduler list 
+		application/views/schedule/create_schedule_data.php
+
+	V-4
+	03-Business-Email-Schedules-WORKING-2019-08-21
+		21 D) 0:00:27 - Slow response time
+	after sending multiple schedule it shows multiple pop up notifications 
+	application/views/template.php
+
+12 Sept 
+
+	04-Error-Business-Employees-Multiple-Positions-2019-08-02
+		16 D) 0:00:20	1 to many employee jobs
+	Done - now showing all employee with different employment
+
+	- Loading issue on calendar page is resolved 
+	Done - we have checked in almost all sections but as the system is big expect to arise somewhere 
+
+	04-Error-Employee-Work-History-Request-2019-07-17
+		Notification is incorrect for work history. Please see attached document.Please note: This notification is slightly different from the "Add Employer or New Position" (button and function) as they are 2 different processes.
+	Done 
+
+	15 F) 0:02:34	Attachment field missing
+		1 - Edit Job - The document file name uploaded does not appear (business side)
+			File name changed to what is stored and also attachment is coming 
+
+		2 - Edit Job - The department selected do not hold during edit, they have to be re-entered (business side)
+		 
+		3 - Send Mail from Job list - The attachment is missing from the email sent to the employee.
+		4-5 - Applicant 
+			4 - Dash is not centered(Business side) .
+			5 - The application attachment the employee sent is missing. 
+		6 - Manage Job list - Table titled "Attached Document" should appear here from the attached file (Business side).
+		7 - Employee Job Manager View page - Attachment missing from job posting (Employee side).
+		Suggesion - Sk - Email Manager - The sent list is lengthy. Please let me know if there is a fix for this.
+		8 - Email Manager SK -  Attachment is missing.
+		9 - Attachment does not open in new window.
+
+13 Sept 
+
+	4-5 = 1 H Git training 
+
+	01-Business-Master-Tables-Cash-Out-WORKING-2019-07-12
+		Fix employee side caluculations  - "Loading" on all inputs.
+		- there is nothing to fix 
+	-------------------------------------------
+	03-Process-Jobs-Internal-Posting-and-Application-ADJUST-2019-07-17
+	15 F) 0:02:34 Attachment field missing
+		1) "Attached Document" for Closed section required.
+		DONE  
+
+		2) Job edit - "Visibility" functions for "Employees" and "Email" needs to ne fixed.
+		Visibility - Employee - Done 
+		Visibility - Email - right now when adding job Email is not storing DB, so let us know what should we do ?
+DONE
+	-------------------------------------------
+	04-Error-Employee-Add-New-Employer-or-Position-2019-07-17
+	14 D) 0:01:49 Relabel
+	Cannot test due to "Start Date" calendar selection date error.
+DONE	
+	---------------------------------
+	14 F) 0:02:03 Position missing
+	Cannot test due to "Start Date" calendar selection date error
+DONE
+	------------------------------------------------
+	04-Error-Employee-Work-History-Request-2019-07-17
+	Add Work History
+	1) Multiple clicking of "Save" button creates multiple requests.
+DONE - We have put loader when form submits so user will not be able to click the button again.
+	2) Start date calendar not functioning. (for "Add New Employer or Position")
+DONE 	
+	-----------------------------------------------------------
+	01-Business-Registration-WORKING-2019-07-02
+
+	03-Business-Email-Schedules-WORKING-2019-08-21
+	Email Sent Box for emailing schedules
+	Comment: The sent list is lengthy. Please let me know if there is a fix for this.
+
+	Reply: We can give one icon after clicking on it emails will be displayed in pop up like other pop up in site. Please let us know if this needs to be done or any other way you want to do ?
+
+	Answer: The icon solution for more than 1 address would be a good solution.
+DONE 
+	-----------------------------------------------------
+	07 F) N/A - Standard template required
+	Create "Time Off Categories" as template (already existing for "Sharon's Kitchen") for all new starting businesses (same as performed for "Cash Collection").
+DONE 
+
+
+
+16 Sept - ON LEAVE 
+
+17 Sept ---- Tasks of the day! 
+	-----------------------------
+	03-Process-Jobs-Internal-Posting-and-Application-ADJUST-2019-07-17
+	Remove "email" selection
+		The "email" selection in "Visibility" for edit section should  be removed as there is no function for the selection any longer.
+		2019-09-14-Jobs-Edit.pdf
+	::DONE
+	-----------------------------------------------------------
+	03-Business-Email-Schedules-WORKING-2019-08-21
+		Email Sent Box for emailing schedules
+		Some email fields are not wrapping text properly.
+		2019-09-14-Email-Field-Adjustments.pdf
+	::DONE
+	-------------------------------------------------------------------------------
+	01-Business-Master-Tables-Cash-Out-WORKING-2019-07-12
+		07 F) N/A	- Standard template required
+		2019-09-14-Cashout-Template.pdf
+	::DONE
+	------------------------------------------------------------------------------
+	04-Error-Employee-Add-New-Employer-or-Position-2019-07-17
+		Employment Request Activation Email
+		The automated activation link email sent to employees on behalf of businesses is not working properly.
+		2019-09-14-Employment-Request-Activation.pdf
+	::
+	-----------------------------------------------------------------------
+	BUSINESS - Employees Required
+		Adjust the "Employees Required" window.
+		2019-09-14-Calendar-Employees-Required.pdf
+	::DONE
+	--------------------------------------------------------------
+	Web Page Adjustments
+		Move "Getting Started"
+		breadcrumb to header next to "Email" for both the Business and Employee pages. Currently it is not visible enough.
+		2019-09-14-Getting-Started.pdf
+	::DONE
+	------------------------------------------------------------------
+	Web Page Adjustments
+		Move page titles from 2nd header to 1st header and fix breadcrumbs
+		1) Move title headers for all pages in Business and Employee sections. 
+		2.1) On the employee and business dashboard pages (only) this breadcrumb should be removed.
+		2.2) On all other pages, this breadcrumb should read "Dashboard" only.
+		2019-09-14-Title-Header.pdf
+	::DONE
+	---------------------------------------------------------------
+	Web Page Adjustments
+		Business Calendar page 
+		1) Remove buttons 
+		2.1) Center after button removal 
+		2.2) Cursor must change to hand when hovering over the calendar icon. 
+		3) Replace "Schedule Viewer" icon with calendar icon and keep the link to the "Schedule Viewer".
+		2019-09-15-Calendar.pdf
+	::DONE
+	-----------------------------------------------------------------------------
+	Web Page Adjustments
+		Business dashboard 
+		1.1) Move to center and top of page 
+		1.2) Make as link to pop-up window 
+		1.3) Keep the red counter and Increase the font size. This must stand out because if the business forgets to change the viewing restrictions for the days, employees may not be able to see their schedule.
+		2) Make these boxes the same size as the total size of the boxes on the far right side (Docs, Log Books and Emp Report).
+		2019-09-15-Business-DashBoard.pdf
+	::DONE
+	-------------------------------------------------------------------
+	Web Page Adjustments
+		Employee Scheduler
+		1) Remove notifications for shift confirmation.
+		2019-09-15-Employee-Scheduler.pdf
+	::DONE
+
+18 Sept
+	- Check for business admin given roles and permissions to employee 
+	- check for the estimated hours for home page and other guest pages 
+
+19 Sept
+	Shifting issue 
+		- When create open sheet for employee from employer section it does not display in employee section dashboard page 
+
+	Employee Permissions
+		Documents
+		The employee should see the granted permissions selected from page 1, the functions are missing.
+		2019-09-17-Employee-Permissions-Documents.pdf
+	::DONE
+	----------------------------------------------------------------
+	Employee Permissions
+		Page Link Loading Errors
+		Some links will not complete loading. Please check page links in the employee "Platform" for these errors.
+		2019-09-18-Employee-Permissions-Links.pdf
+	::DONE (found in Create time off category, Calendar page)
+	-----------------------------------------------------------------------------
+	Employee Permissions
+		Scheduler Button
+		The "Create Open Shifts" transformer button is missing from the permissions granted to the employee.
+		2019-09-18-Permissions-Scheduler.pdf
+	::DONE
+	---------------------------------------------------------------------
+	04-Error-Employee-Add-New-Employer-or-Position-2019-07-17
+		Employment Request Activation Email
+		This is working as per our discussion however, the "thumbs up" icon for employment REQUESTS sent to employees by businesses needs to be replaced with a green check mark to match the style of the "x" in the action table. Please refer to the attachment for clarification.
+		2019-09-18-Jobs-Accepting-Employment.pdf
+	::DONE
+	----------------------------------------------------
+	Employee Permissions
+		Notes and Events
+		The "Notes and Events" permission is missing from the set of permissions to allow the employee to create notes and events.
+		2019-09-17-Notes-and-Events.pdf
+	::In Progress,
+		Please check the things done for this, let us know what changes we have to make when employee click on create note pop up ?
+
+
+20 Sept 
+	2 Hours 
+	- Open shift is not showing in employee 
+		- Reviewed all the things and found that the employee's employment is not active for specific Department and position so there is no issues in this, it should work find in dev server too. please try activate employment and test it again.
+		- There was one design issues which we have solved.
+
+	Employee Permissions
+		Notes and Events
+		The "Notes and Events" permission is missing from the set of permissions to allow the employee to create notes and events.
+		2019-09-17-Notes-and-Events.pdf
+	::DONE
+	----------------------------------------------------------------
+	Employee Permissions
+		Permissions
+		The "Edit" and "Reset" functions are missing as permissions for employees.
+		2019-09-17-Employee-Permissions.pdf
+	::DONE
+	----------------------------------------------------------
+	Employee Permissions
+		Save Critical Documents
+		The "Save Critical Documents" permissions selection is missing from the business side.
+		2019-09-17-Save-Critical-Documents.pdf
+	::DONE
+	------------------------------------------------------------------
+
+
