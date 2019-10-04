@@ -1,0 +1,700 @@
+
+
+_______________________VS_Code_______________________START
+
+
+extension installed
+
+- PHP intelephense - by Ben mewburn
+- slime theme - by smlombardi
+	- install slime package, reload and active 
+		Shift + Cmd + P find color theme and then find slime and enter to active
+- advance new file - by patbenatar
+- File Utils - by Steffen Leistner
+- snippet creator - by nikitaKunevich
+- php cs fixer
+- DotENV
+- Laravel Artisan
+- Laravel Blade snippets
+- PHP DocBlocker
+- Vetur
+- Vue 2 Snippets
+- PHP Constructor
+- PHP Getter & Setters
+- PHP Namespce Resolver
+
+- Shift + Cmd + X open download extension side bar with 
+
+- Shift + Cmd + E to go to tree view
+
+- Shift + Cmd + F = global search
+
+
+- Ctrl + Alt + N to create new file
+
+- Ctrl + B toggle side bar
+
+- Ctrl + R changed key binding for "go to symbol to" - got to file and look for symbol 
+- Ctrl + Shift + R to go to symbol in whole project
+
+- Ctrl + Shift + \ OR Ctrl + M  backward slash to go to closing bracket 
+
+- Ctrl + Shift + T to reopen last closed tab/file
+
+- Ctrl + ` to open up a terminal in editor
+
+- toggle activity bar
+
+- default font family was, 
+	'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'
+	I changed to fira code
+
+- Alt + Enter to open context menu and use some of its options
+
+- can create snippets		
+
+PHP CS Fixer for auto formatting
+- install php cs fixer and check if it runs from command prompt
+- go to .vscode directory and mkdir .php_cs file
+- from vs code Shift + Ctrl + p and search shell to allow workspace shell configuration
+- then from command prompt type $> code .php_cs will open in vs code editor
+- paste the php code in that file
+- then need to give it full path in settings area like so "/home/indianic/.vscode/.php_cs" then it will take effect
+
+
+multiple cursor
+Ctrl + D and keep pressing D to select multiple
+Ctrl + Shift + G select all similar words together 
+Use Alt and click
+Ctrl + Shift + G to select all together while having cursor on that word
+
+Ctrl + click to go to definition of class file
+
+- Ctrl + Shift + D duplicate the line
+- F5, import namespace
+- F6, expand class path
+- F7, insert constructor property
+
+
+"workbench.colorCustomizations": {
+  "activityBar.background": "#000C1D",
+  "activityBar.border": "#102a44",
+  "sideBar.background": "#001122",
+  "sideBar.border": "#102a44",
+  "sideBar.foreground": "#8BADC1"
+},
+
+_______________________VS_Code_______________________END
+
+
+
+Command prompt commands
+
+cd <relative path>
+cd ..
+cd foo
+
+mkdir <directory name>
+
+touch <file_name>
+
+ls -a(hidden files) -l(listing) -R(recursively for all inner dir)
+ls -alR
+
+man <command name> (get help of any command)
+
+head -n <number of lines>, tail, cat & less
+
+cp <source> <destination>
+cp some_folder/* ../some_other_folder
+cp *.txt texts/
+
+rm file_name
+rm -rf
+rm *.txt
+
+check ubuntu version
+
+$ lsb_release -a
+
+List all the services of ubuntu system
+
+$ service --status-all
+
+add path to env PATH variable
+
+export PATH="/NEW_PATH/:$PATH";
+
+
+
+_______________________GIT_______________________START
+
+if you change a file directly on the server, it will be marked as changed for git and needs to be either committed and pushed or restored. above command restores the file
+
+git checkout -- file.php
+
+
+_______________________GIT_______________________END
+
+
+
+(म:)
+आके सीधी लगी दिल पे जैसे कटरिया
+ओ सांवरिया ओए
+आके सीधी लगी दिल पे जैसे कटरिया
+ओ सांवरिया ओए होए
+ओ तेरी तिरछी नजरिया
+(पु:)
+ले गयी मेरा दिल तेरी जुल्मी नजरिया
+ओ गुजरिया ओए
+ले गयी मेरा दिल तेरी जुल्मी नजरिया
+ओ गुजरिया ओए होए होए
+ओ जाने सारी नगरिया
+(म:)
+आके सीधी लगी दिल पे जैसे कटरिया
+ओ सांवरिया ओए
+
+(म:)
+मेरी गली आते हो क्यूँ बार-बार
+छेड़-छेड़ जाते हो क्यूँ दिल के तार
+ओ सईयाँ, ओ सईयाँ, ओ सईयाँ, पडूँ तोरे पईयाँ
+(पु:)
+क्या मैं करूँ गोरी मुझे तुझसे है प्यार
+जो न तुझे देखूं न आये करार
+ओ गोरी, ओ गोरी, ओ गोरी, बड़ के बुदन तीर वी टकर
+(म:)
+हटो जाओ ना बनाओ
+हटो जाओ हाय हाय ना बनाओ हाय हाय हाय
+नटखट रंगीले सांवरिया
+आके सीधी लगी दिल पे...
+
+(म:)
+पीछे-पीछे आते हो क्यूँ दिल के चोर
+मान जाओ वरना मचा दूँगी शोर
+बचाओ, ओ मुए, ओ मुर्गे, ओ कौवे
+(पु:)
+पहले तो बाँधी निगाहों की डोर
+अब हमसे कहती हो चल पीछा छोड़
+ओ गोरी, ओ नटखट, ओ खटपट, ओ पनघट, ओ झटपट
+(म:)
+तोरे नैना, ओ मीठे बैना
+ओ तोरे नैना हाय हाय मीठे बैना ओए होए
+मुझको बना गए बावरिया
+आके सीधी लगी दिल पे...
+
+आके सीधी लगी दिल पे जैसे कटरिया, ओ सँवरिया
+आके सीधी लगी दिल पे जैसे कटरिया, ओ सँवरिया
+तेरी तिरछी नजरिया
+
+ले गई मेरा दिल तेरी जुल्मी नजरिया, ओ गुजरिया
+ले गई मेरा दिल तेरी जुल्मी नजरिया, ओ गुजरिया
+जाने सारी नगरिया
+
+आके सीधी लगी दिल पे जैसे कटरिया, ओ सँवरिया
+
+मेरी गली आते हो क्यूँ बार-बार,
+छेड़-छेड़ जाते हो क्यूँ दिल के तार
+हो सैँया, हो सैँया, हो सैँया पड़ूँ तोरे पैँया
+
+मेरी गली आते हो क्यूँ बार-बार,
+छेड़-छेड़ जाते हो क्यूँ दिल के तार
+
+क्या मैं करूँ गोरी मुझे तुझसे है प्यार,
+जो न तुझे देखूँ न आए क़रार
+ओ गोरी, ओ गोरी, ओ गोरी बढ़के बुदण तीरवी टकर
+
+क्या मैं करूँ गोरी मुझे तुझसे है प्यार,
+जो न तुझे देखूँ न आए क़रार
+
+हटो जाओ, ना बनाओ,
+हटो जाओ, ना बनाओ, 
+नटखट रंगीले साँवरिया
+आके सीधी लगी दिल पे जैसे कटरिया, ओ सँवरिया
+तेरी तिरछी नजरिया
+
+ले गई मेरा दिल तेरी जुल्मी नजरिया, ओ गुजरिया
+
+पीछे-पीछे आते हो क्यूँ दिल के चोर,
+मान जाओ वरना मचा दूँगी शोर
+बचाओ
+ओ मूए, ओ मुर्गे, ओ कौवे
+
+पीछे-पीछे आते हो क्यूँ दिल के चोर,
+मान जाओ वरना मचा दूँगी शोर
+
+पहले तो बाँधी निगाहों की डोर,
+अब हमसे कहती हो चल पीछा छोड़
+ओ गोरी, ओ नटखट, ओ खटपट, ओ पनघट, ओ झटपट
+
+पहले तो बाँधी निगाहों की डोर,
+अब हमसे कहती हो चल पीछा छोड़
+
+तोरे नैना, मीठे बैना,
+तोरे नैना, मीठे बैना, 
+मुझको बना गए बाँवरिया
+आके सीधी लगी दिल पे जैसे कटरिया, ओ सँवरिया
+
+तेरी तिरछी नजरिया
+
+ले गई मेरा दिल तेरी जुल्मी नजरिया, ओ गुजरिया
+ओ जाने सारी नगरिया
+आके सीधी लगी दिल पे जैसे कटरिया,
+ओ सँवरिया, ओ गुजरिया
+ओ सँवरिया, ओ गुजरिया
+ओ सँवरिया
+
+
+Female: 
+aake seedhi lagi dil pe jaise kaTariyaa o
+saaNwariyaa oye
+aaake seedhi lagi dil pe jaise kaTariyaa o saaNwariyaa oye hoye 
+o teri tirchhi najariyaa aa
+
+Male: 
+le gayee meraa dil teri julmi najariyaa o gujariyaa oye
+le gayee meraa dil teri julmi najariyaa o gujariyaa oye hoye hoye
+o jaane saari nagariyaa
+
+Female: 
+aake seedhi lagi dil pe jaise kaTariyaa o saaNwariyaa
+
+Female: 
+meri gali aate ho kyuN baar baar
+chheD chheD jaate ho kyuN dil ke taar
+o saiyaaN o saiyaaN o saiyaaN paDuN tore paiyaaN
+meri gali aate ho kyuN baar baar
+chheD chheD jaate ho kyuN dil ke taar
+
+Male: 
+kyaa main karuN gori mujhe tujhse hai pyaar
+jo na tujhe dekhuN na aaye qaraar
+o gori o gori o gori baD ke buDhan Teer vi Takkar
+kyaa main karuN gori mujhe tujhse hai pyaar
+jo na tujhe dekhuN na aaye qaraar
+
+Female: 
+haTo jaao naa banaao
+haTo jaao haay haay na banaao haay haay haay
+naTkhaT rangeele saaNwariyaa
+aake seedhi lagi dil pe jaise kaTariyaa o saaNwariyaa
+haay haay
+
+Male: 
+le gayee meraa dil teri julmi najariyaa o gujariyaa
+
+Female: 
+peechhe peechhe aate ho kyuN dil ke chor
+maan jaao varnaa machaa dooNgi shor
+bachaao o muai o murge o kauve
+peechhe peechhe aate ho kyuN dil ke chor
+maan jaao varnaa machaa dooNgi shor
+
+Male: 
+pahle to baaNdhi nigaahon ki Dor
+ab hamse kahti ho chal peechhaa chhoD
+o gori o naTkhaT o khaTpaT o panghaT o jhaTpaT
+pahle to baaNdhi nigaahon ki Dor
+ab hamse kahti ho chal peechhaa chhoD
+
+Female: 
+tore nainaa o meeThe bainaa
+o tore nainaa haay haay meeThe bainaa oye hoye
+mujhko banaa gaye baaNwariyaa
+aake seedhi lagi dil pe jaise kaTariyaa o saaNwariyaa
+oye hoye o teri tirchhi najariyaa
+
+Male: 
+le gayee meraa dil teri julmi najariyaa o gujariyaa
+oye hoye o jaane saari nagariyaa
+
+Female: 
+aake seedhi lagi dil pe jaise kaTariyaa o
+saaNwariyaa
+(Male: o gujariyaa
+Female: o saaNwariyaa) -2
+
+
+
+अरे हेऽऽ
+लाऽ लाऽ लाऽ लाऽ लाऽ लाऽ लाऽ लाऽ लाऽ लाऽ ...
+हेऽ हेऽ
+मेरे सामने वाली खिड़की में
+एक चाँद का टुकड़ा रहता है
+मेरे सामने वाली खिड़की में
+एक चाँद का टुकड़ा रहता है
+
+अफसोस ये है कि वो हम से
+कुछ उखड़ा उखड़ा रहता है
+
+मेरे सामने वाली खिड़की में
+एक चाँद का टुकड़ा रहता है...
+
+जिस रोज़ से देखा है उस को
+हम शमा जलाना भूल गए
+जिस रोज़ से देखा है उस को
+हम शमा जलाना भूल गए
+दिल थाम के ऐसे बैठे हैं
+कहीं आना जाना भूल गए
+अब आठ पहर इन आँखों में
+वो चंचल मुखड़ा रहता है
+
+मेरे सामने वाली खिड़की में
+एक चाँद का टुकड़ा रहता है...
+
+बरसात भी आकर चली गयी
+बादल भी गरज कर बरस गए...
+
+बरसात भी आकर चली गयी
+बादल भी गरज कर बरस गए
+पर उस की एक झलक को हम
+ऐ हुस्न के मालिक तरस गए
+कब प्यास बुझेगी आँखों की
+दिनरात ये दुखडा रहता है
+
+मेरे सामने वाली खिड़की में
+एक चाँद का टुकड़ा रहता है
+अफसोस ये है कि वो हम से
+कुछ उखड़ा उखड़ा रहता है
+मेरे सामने वाली खिड़की में
+एक चाँद का टुकड़ा रहता है
+
+
+
+
+
+ये दोस्ती हम नहीं तोड़ेंगे
+तोड़ेंगे दम मगर
+तेरा साथ ना छोड़ेंगे
+ये दोस्ती हम नहीं तोड़ेंगे
+तोड़ेंगे दम मगर
+तेरा साथ ना छोड़ेंगे
+अरे मेरी जीत, तेरी जीत
+तेरी हार, मेरी हार
+सुन ऐ मेरे यार
+तेरा ग़म, मेरा ग़म
+मेरी जान, तेरी जान
+ऐसा अपना प्यार
+ज़ान पे भी खेलेंगे
+तेरे लिये ले लेंगे
+ज़ान पे भी खेलेंगे
+तेरे लिये ले लेंगे
+सबसे दुश्मनी
+ये दोस्ती हम नहीं तोड़ेंगे
+तोड़ेंगे दम मगर
+तेरा साथ ना छोड़ेंगे
+लोगों को आते हैं
+दो नज़र हम मगर
+देखो दो नहीं
+हों जुदा या ख़फ़ा
+ऐ खुदा है दुआ
+ऐसा हो नहीं
+खाना-पीना साथ है
+मरना-जीना साथ है
+खाना-पीना साथ है
+मरना-जीना साथ है
+सारी ज़िन्दगी
+ये दोस्ती हम नहीं तोड़ेंगे
+तोड़ेंगे दम मगर
+तेरा साथ ना छोड़ेंगे
+ये दोस्ती हम नहीं तोड़ेंगे
+तोड़ेंगे दम मगर
+तेरा साथ ना छोड़ेंगे
+
+Gulabi aankhen jo teri dekhi sharabi yeh dil ho gaya
+Sambhalo mujhko oh mere yaaron sambhalna mushkil ho gaya
+
+Dil mein mere khwab tere tasveer jaise ho deewar pe
+Tujhpe fida main kyu huwa aata hai gussa mujhe pyar pe
+Mai loot gaya maan ke dil ka kaha mai kahi ka na raha kya kahu main dilruba
+Bura hai jaadoo teri aankhon ka yeh mera kaatil ho gaya
+Gulabi aankhen jo teri dekhi sharabi yeh dil ho gaya
+
+Maine sada chaha yahi daman bacha lu hasino se main 
+Teri kasam khwabo mein bhi bachta fira nazneeno se mai
+Tauba magar mil gayi tujhse nazar mil gaya darde jigar sun zara oh bekhabar
+Zara sa haske jo dekha tune mai tera bismil ho gaya
+
+Gulabi aankhen jo teri dekhi sharabi yeh dil ho gaya
+Sambhalo mujhko oh mere yaaron sambhalna mushkil ho gaya
+
+गुलाबी आँखे जो तेरी देखी, शराबी ये दिल हो गया
+संभालो मुझको, ओ मेरे यारों, संभलना मुश्किल हो गया
+
+दिल में मेरे, ख़्वाब तेरे, तस्वीरें जैसे हों दीवार पे
+तुझपे फ़िदा, मैं क्यों हुआ, आता है गुस्सा मुझे प्यार पे
+मैं लुट गया, मान के दिल का कहा
+मैं कहीं का ना रहा, क्या कहूँ मैं दिलरुबा
+हुआ ये जादू तेरी आँखों का, ये मेरा क़ातिल हो गया
+
+गुलाबी आँखे जो तेरी देखी, शराबी ये दिल हो गया
+
+मैंने सदा, चाहा यही, दामन बचा लूं हसीनों से मैं
+तेरी क़सम, ख़्वाबों में भी, बचता फिरा नाज़नीनों से मैं
+तौबा मगर, मिल गई तुझसे नज़र
+मिल गया दर्द-ए-जिगर, सुन ज़रा ओ बेख़बर
+ज़रा सा हँस के, जो देखा तूने मैं तेरा बिस्मिल हो गया
+
+गुलाबी आँखे जो तेरी देखी, शराबी ये दिल हो गया
+संभालो मुझको, ओ मेरे यारों, संभलना मुश्किल हो गया
+
+
+
+
+
+
+
+Hard:
+Hmmm...Tumne wo kya dekha, Jo kaha deewana..aaa...
+
+Bharat:
+Hmmm....Ham ko nahi kuchh, Samajh zara samjhana...
+
+Amit: 
+Pyaar men jab bhi, Aankh kahin lad jaaye....
+Tab dhadakan aur, Bechaini badh jaaye...
+
+All: Tu ruu...
+
+Amit:
+jab koi Gintaa hai, Raaton ko taare....
+Tab samajho use pyaar, Ho gaya pyaare....
+
+Pyaar tumhe kis mod, Pe le aayaaaaa 
+ki dil kare haaye....
+
+Keyur: Haaye...
+
+Amit:
+Koi to bataaye kya hoga
+
+All: Tu ruu...ruuu....
+
+All:
+Pyaar Hume kis mod, Pe le aaya 
+ki dil kare haaye....
+
+Keyur :haaye...
+
+All: Koi ye bataaye kya hoga...
+
+All:
+Wooo....Woooo...Wooo...
+
+Keyur:
+Battiyaan bujha dooooo...
+
+Bharat:
+Are koi batti to bujha de yaar
+
+Hard:
+Battiyaan bujha do, Ki nind nahin aati hai a...a...
+
+Keyur:
+Battiyaan bujhane se, Bhi nind nahin aayegi...
+
+All:
+Battiyaan bujhane vaali, Jaane kab aayegi...
+
+Amit:
+Sh! Sh! Sh!
+Shor na machaao warna, Bhaabhi jaag jaayegi
+
+Amit:
+Pyaar tumhen kis, Mod pe le aaya 
+ki Dil kare haay... 
+
+Bharat: haaye...
+
+Amit: Koi ye bataaye kya hoga...
+
+Fast....
+
+Amit:
+Pyaar tumhen kis, Mod pe le aaya 
+ki Dil kare haay... 
+
+Bharat: haaye...
+
+Amit: Koi ye bataaye kya hoga...
+
+Keyur: Deeee Daaa Ddaddadad
+
+All:
+Pyaar Hume kis mod, Pe le aaya 
+ki dil kare haaye....
+
+Hard:haaye...
+
+All: Koi ye bataaye kya hoga..
+
+Amit:
+Aakhir kya thi, Aisi bhi majaburi
+Mil gae dil ab bhi, Kyon hai ye duri
+
+Hard:
+Are(Hard voice), dam hai to unse, Chhin ke le aayenge,
+Di na ghar waalo ne manzuuri...
+
+Common: dira diraaaraa...
+
+Bharat/Keyur:
+Are(Hard), dam hai to unse, Chhin ke le aayenge,
+Are Di na ghar waalo ne manzuuri...
+
+Hard:
+Diddaa duduuu....
+
+All:
+Pyaar hamen kis mod pe le aaya
+Ki dil kare haay 
+
+Bharat :haaye
+
+All:
+Koi ye bataaye kya hoga.
+
+Amit:
+Tadappa tadappa....dadappa....dadappa....
+
+All:
+Pyaar hamen kis mod pe le aaya
+Ki dil kare haay 
+
+Bharat :haaye
+
+All:
+Koi ye bataaye kya hoga.
+
+uuuoooooohhhaaaa....
+
+
+
+
+
+
+
+
+
+Uho Uhooo Ohoo Ooo
+Uho Uhooo Haaa Haaa
+Yamma Yamma, Yamma Yamma, Yeh Khubsurat Sama
+Yamma Yamma, Yamma Yamma, Yeh Khubsurat Sama
+Bas Aaj Ki Raat Hai Zindagi, Kal Hum Kahan Tum Kahan
+Bas Aaj Ki Raat Hai Zindagi, Kal Hum Kahan Tum Kahan
+
+Yamma Yamma, Yamma Yamma, Yeh Khubsurat Sama
+Yamma Yamma, Yamma Yamma, Yeh Khubsurat Sama
+Bas Aaj Ki Raat Hai Zindagi, Kal Hum Kahan Tum Kahan
+Bas Aaj Ki Raat Hai Zindagi, Kal Hum Kahan Tum Kahan
+
+Kab Kya Hojae Kisko Khaber, Aa Nachle Jhumkar
+Kab Kya Hojae Kisko Khaber, Aa Nachle Jhumkar
+
+Yeh Zindagi Ek Lamba Safar, Pal Bhar Ke Sab Hum Safar
+
+Ek Raat Ke Mehmaan Sab Yahan, Kal Hum Kahan Tum Kahan
+
+Ek Raat Ke Mehmaan Sab Yahan, Kal Hum Kahan Tum Kahan
+
+Yamma Yamma, Yamma Yamma, Yeh Khubsurat Sama
+Bas Aaj Ki Raat Hai Zindagi, Kal Hum Kahan Tum Kahan
+
+Haste Huwe Aisii Shaan Se, Deewane Jal Jaenge
+Are Haste Huwe Aisii Shaan Se, Deewane Jal Jaenge
+
+Are Jalti Shama Se Milke Gale, Parwane Jal Jaenge
+
+Reh Jayga Yado Ka Diyaa, Kal Hum Kahan Tum Kahan
+Are Reh Jayga Yado Ka Diyaa, Kal Hum Kahan Tum Kahan
+Yamma Yamma, Yamma Yamma, Yeh Khubsurat Sama
+Bas Aaj Ki Raat Hai Zindagi, Kal Hum Kahan Tum Kahan
+Bas Aaj Ki Raat Hai Zindagi, Kal Hum Kahan Tum Kahaaan.
+
+
+
+
+'1003', '1007', '1011', '1015', '1019', '1028', '1031', '1035', '1037', '1039', '1051', '1055', '1059', '1072', '1073', '1074', '1075', '1076', '1079', '1080', '1083', '1085', '1090', '1093', '1095', '1100', '1102', '1106', '1109', '1115', '1117', '1120', '1131', '1145', 
+
+
+
+
+https://github.com/sudheerj/reactjs-interview-questions
+
+https://codesignal.com/
+
+https://github.com/tablecheck/react-test-task
+https://github.com/uber/coding-challenge-tools
+https://daveceddia.com/react-practice-projects/
+https://developerjobsboard.co.uk/2018/07/28/an-example-senior-react-redux-developer-task/
+
+
+https://itnext.io/how-to-structure-your-react-app-2-2cf3b8040634
+
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-redis-on-ubuntu-16-04
+
+https://voltagead.com/the-basics-of-laravel-queues-using-redis-and-horizon/
+
+https://codeburst.io/creating-events-that-are-queueable-and-handle-them-with-supervisor-6ca876fd61dc
+
+
+MYSQL with MOSH https://www.youtube.com/watch?v=7S_tz1z_5bA&feature=youtu.be
+
+
+
+
+How to write production-ready Node.js Rest API — Javascript version
+https://medium.com/bb-tutorials-and-thoughts/how-to-write-production-ready-node-js-rest-api-javascript-version-db64d3941106
+
+Learn Enough React For The Interviewhttps://medium.com/bb-tutorials-and-thoughts/learn-enough-react-for-the-interview-f460a2fa3aeb
+
+REACT 
+https://reacttraining.com/react-router/web/api/BrowserRouter 
+
+
+https://coursehunters.net/course/react-front-to-back-2019-hooks-context-mern-i-redux 
+
+
+Redux Tutorial - Learn React/Redux in one videohttps://www.youtube.com/watch?v=OSSpVLpuVWA 
+https://www.youtube.com/watch?v=0ix_QLPkYhI
+https://www.youtube.com/watch?v=93p3LxR9xfM [full example with good structure ]
+
+Docker 
+https://www.youtube.com/watch?v=Gw2Jrid4SaQ&feature=push-fr&attr_tag=Cud7Gg1jCL93clm9%3A6 
+
+FULL WEB DEVELOPER course including HTML JS JQUERY REACT ANGULAR NODE
+https://www.youtube.com/watch?v=Q33KBiDriJY&feature=push-fr&attr_tag=S0GhqTdys_9D9Ko5%3A6
+
+
+https://medium.com/zerotomastery
+
+https://medium.com/zerotomastery/web-developer-monthly-july-2019-a65ac4c1e223
+
+https://css-tricks.com/build-a-chat-app-using-react-hooks-in-100-lines-of-code/
+
+Advanced JavaScript Concepts 
+
+https://docs.google.com/document/d/1VPGK4isl2HhuXIIhTdZZCkjoubF0W1diJyx1WpmoS8c/edit#heading=h.hb2mfvd2ctr
+
+React Architecturehttps://codeburst.io/your-react-app-is-a-mess-before-you-even-know-it-6575d13f2e51
+
+
+
+
+
+
+
+
+Code conventions for project
+-1 never alias Models instead if required in collision give alias to other class
+-2 Levels of indentation :: soft rule on never more than 1, and a hard rule of never more than 2 	that means that you should extract code to protected methods instead of inline them	we really try to keep methods as short as possible
+-3 this can be really simplified with ::data_get:: and ::array_wrap::	if we begin with the first if (! empty)
+-4	you dont need that, simply do 		$orderLines = data_get($order, 'SalesLines.Sales_Order_Line')
+	the second intendation, if (is_array(...)) is not needed, simply do 		array_wrap($orderLines)
+-5 We don't do "else" statements, everytime you do an else, there's a better solution
+-6, we don't limit our database fields in char length. We use $table->string('field_name') only	same with pretty much all other field types
+-7 User ::filter:: and ::reject:: functions of laravel
+-8 Use ternery operator instead of if else block
+
+
+

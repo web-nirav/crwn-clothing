@@ -1,0 +1,321 @@
+
+
+----------------------------------------START date end date with validation of range-----------------------------------
+    // set default dates
+    var start = new Date();
+    // set end date to max one year period:
+    var end = new Date(new Date().setYear(start.getFullYear()+1));
+
+    $('#start_date').datepicker({
+        autoclose: true, 
+        startDate : start,
+        endDate   : end
+    }).on('changeDate', function(){
+        $('#end_date').datepicker('setStartDate', new Date($(this).val()));
+    }).datepicker('update', new Date());
+
+    $('#end_date').datepicker({
+        autoclose: true, 
+        startDate : start,
+        endDate   : end
+    }).on('changeDate', function(){
+        $('#start_date').datepicker('setEndDate', new Date($(this).val()));
+    }).datepicker('update', new Date());
+----------------------------------------END date end date with validation of range-----------------------------------
+
+
+----------------------------------------START Print page and close once printing done-----------------------------------
+
+@if($option == 'print')
+        <script>
+            (function() {
+
+                window.print();
+
+                var beforePrint = function() {
+                    console.log('Functionality to run before printing.');
+                };
+
+                var afterPrint = function() {
+                    console.log('Functionality to run after printing');
+                    window.close();
+                };
+
+                if (window.matchMedia) {
+                    var mediaQueryList = window.matchMedia('print');
+                    mediaQueryList.addListener(function(mql) {
+                        if (mql.matches) {
+                            beforePrint();
+                        } else {
+                            afterPrint();
+                        }
+                    });
+                }
+
+                window.onbeforeprint = beforePrint;
+                window.onafterprint = afterPrint;
+
+            }());
+        </script>
+    @endif
+    
+----------------------------------------END Print page and close once printing done-----------------------------------
+
+
+
+
+
+----------------------------------------START Page Loader-----------------------------------
+$(document).ajaxSend(function(){
+        $("#fade").show();
+        $("#modal").show();
+    })
+
+    $(document).ajaxComplete(function(){
+          setTimeout(function() 
+          {
+            $("#fade").hide();
+        	$("#modal").hide();
+          }, 800);
+        
+    })
+<div id="fade"></div>
+<div id="modal">
+    <img id="loader" src="{{ asset('assets/common/img/loader/loader.gif') }}" />
+</div>
+<style>
+	#fade {
+    /*display: none;*/
+    position:absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #ababab;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .70;
+    filter: alpha(opacity=80);
+}
+
+#modal {
+    /*display: none;*/
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    width: 64px;
+    height: 64px;
+    padding:30px 15px 0px;
+    border: 3px solid #ababab;
+    box-shadow:1px 1px 10px #ababab;
+    border-radius:20px;
+    background-color: white;
+    z-index: 1002;
+    text-align:center;
+    overflow: auto;
+}
+</style>
+
+<style>
+            .preloader-backdrop {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 1111;
+                background-color: rgba(255,255,255,0.8); 
+            }
+            .preloader-backdrop .page-preloader {
+                position: fixed;
+                top: 40%;
+                left: 50%;
+                padding: 10px 45px 10px 10px;
+                margin-left: -60px;
+                z-index: 1005;
+                font-size: 16px; 
+                text-align: center;
+                justify-content: space-between;
+            }
+        </style>
+<div class="preloader-backdrop">
+            <div class="page-preloader">
+                <img src="<?php echo base_url() . "assets/images/loading.gif"; ?>" width="40" height="40">
+                <br />
+                Loading, please wait...
+            </div>
+        </div>
+
+<script>
+        $(function () {
+            $(".preloader-backdrop").hide();
+            $(document).ajaxSend(function(){
+                $(".preloader-backdrop").show();
+            });
+            $(document).ajaxComplete(function(){
+                setTimeout(function() {
+                    $(".preloader-backdrop").hide();
+                }, 1000);
+            });
+        });
+    </script>
+----------------------------------------END Page Loader-----------------------------------
+
+----------------------------START FB Facebook social login FB app settings steps---------------
+https://php71.indianic.com/cybercrowd/public/oauth/facebook/callback
+Steps
+- create app
+- add platform with https domain link
+- FB Login -> settings -> set "Valid OAuth Redirect URIs" field as full redirect url link
+- FB app, Settings -> Basic -> field name "App Domains" https domain url link
+----------------------------END FB Facebook social login FB app settings steps---------------
+
+
+
+----------------------------START Find and ser usres timezone---------------
+@if(!session('ses_timezone_name'))
+
+    $(document).ready(function()
+    {
+        var timezone_offset_minutes = new Date().getTimezoneOffset();
+        timezone_offset_minutes = timezone_offset_minutes == 0 ? 0 : -timezone_offset_minutes;
+
+        // Timezone difference in minutes such as 330 or -360 or 0
+        console.log(timezone_offset_minutes); 
+        $.ajax({
+                url: '{{ route("setTimezone") }}',
+                type: 'post',
+                data: { timezone_offset_minutes : timezone_offset_minutes},
+                headers: { 'X-CSRF-Token': "<?=csrf_token()?>"  },
+                success: function () {
+                    console.log('Timezone set'); 
+                }
+            });
+    });
+    
+@endif
+
+$timezone_offset_minutes = request('timezone_offset_minutes'); //330;
+
+// Convert minutes to seconds
+$timezone_name = timezone_name_from_abbr("", $timezone_offset_minutes*60, false);
+
+session(['ses_timezone_name' => $timezone_name]);
+
+----------------------------END Find and ser usres timezone---------------
+
+
+
+Divya Kanak - Ext: 389 shared a link Thu, May 31 5:47 PM
+
+$userId = $id; $user = Users::select('first_name', 'id', 'last_name', 'email', 'country_id', 'state_id', 'business_id', 'category_id', 'address', 'contact_person', 'contact_email', 'contact_number', 'company_name', 'image', 'mobile') ->with( 'country', 'state', 'action:user_id,action', 'userBusiness.business:id,name,action', 'businessCategory.category:id,name')
+->where('id', $userId)->first(); 
+if(file_exists(public_path().'/storage/profile_pic/' . $userId . '/' . $user->image)) 
+{ $user->image = url('storage/profile_pic/' . $userId . '/' . $user->image); } 
+else 
+{ $user->image = url('images/defaultUser.png'); }
+
+
+
+
+{
+	"from_id": "35", 
+	"role_id": "2", 
+	"message": "{#USERNAME#} has following you.", 
+	"model": "Post"
+	"extra_info": 
+		{
+			"redirect_url": "http://10.2.6.78/cozicoin/public/profile_detail/==", 
+			"instance_type": "New Follower Added",
+			"params": {
+				"if" : 'Any'
+			}
+		}
+}	
+
+https://stackoverflow.com/questions/40574001/how-to-change-reset-password-email-subject-in-laravel/40574428?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+
+/*
+select m.*, u1.first_name, u2.first_name from messages m 
+    join consultants_details u1 on m.from_id = u1.user_id
+    join consultants_details u2 on m.to_id = u2.user_id
+    where (from_id = 33 and to_id = 38) OR (from_id = 38 and to_id = 33)
+    ORDER BY m.id DESC
+
+    select * from messages where (from_id = 33 and to_id = 38) OR (from_id = 38 and to_id = 33)
+*/
+
+
+
+// return App\Message::with(['toUserData' => function($query){
+    //                                 $query->select('id', 'username', 'role_id');
+    //                             }])->distinct()->get(['to_id']);
+    $data = App\Message::with(['fromUser' => function($query){
+                                    $query->whereRaw('date(created_at) = ?', [Carbon\Carbon::today()]);
+                                    $query->orderBy('from_id', 'ASC');
+                                }])->distinct()->select('to_id', 'to_role_id')
+                                    ->whereRaw('date(created_at) = ?', [Carbon\Carbon::today()])->get();
+
+    //$data = App\Message::with('fromUser')->distinct()->select('to_id')->get();
+    //return $data;
+    $msgData = [];
+    foreach ($data as $key => $value) 
+    {
+        // \Log::info($value['to_id']);
+        foreach ($value['fromUser'] as $key2 => $value2) 
+        {
+             // \Log::info($value2['body']);
+             $fromId = $value2['from_id'];
+             
+             if($value2['from_role_id'] == 3)
+             {
+                $user = App\ConsultantsDetails::where('user_id', $fromId)->first();
+                $routes = 'consultants.messages.edit';
+             }
+             else
+             {
+                $user = App\ClientsDetails::where('user_id', $fromId)->first();
+                $routes = 'clients.messages.edit';
+             }
+             $value2['first_name'] = $user->first_name;
+             $value2['last_name']  = $user->last_name;
+             $value2['routes']     = $routes;
+             $msgData[$value['to_id']][$fromId][] = $value2;
+        }
+        //$msgData[$value['to_id']]['from_user_msgs'] = App\Message::where('to_id', $value['to_id'])->get();
+    }
+      return $msgData;
+    // return view('temp', ['msgData' => $msgData[32]]);
+    foreach($msgData as $userId => $usersMessages)
+    {
+        // return $userId;
+        // return $usersMessages;//[$usersMessages->from_id][0]['to_id'];
+        $user = App\User::find($userId);
+        \Notification::send($user, new App\Notifications\MessageDigest($usersMessages));
+        // return view('temp', ['msgData' => $usersMessages]);
+        
+    }
+    //return $users = App\Message::whereIn('to_id', [38,33,39,34,42,32])->get();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

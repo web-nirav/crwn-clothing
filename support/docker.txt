@@ -1,0 +1,62 @@
+__________________________________________DOCKER_____________________________________________________________
+
+Docker learning and commands
+
+A Dockerfile is a set of instructions written as a shell script for creating a Docker image. 
+
+After creating Dockerfile with required minimum content create/build and run docker image using following commands
+
+ $ > sudo docker build -t NEW_IMAGE_NAME LOCATION_OF_DOCKER_FILE
+ $ > sudo docker build -t fitness-freak .
+
+this will pull in the image we use in docker file and create new image with given name i.e. "fitness-freak"
+
+
+ $ > sudo docker run -p PORT_OF_HOST:PORT_OF_CONTIANER NEW_IMAGE_NAME 
+ $ > sudo docker run -p 80:80 fitness-freak
+
+ (forward the port of host to port of container, that means whenever request gets to host computer, docker gonna forward that to container and in docker image file whatever we define for EXPOSE post will be used.)
+
+Now whenever we change our source we have to build image again to make effect of that source change so instead of that we can use volumes
+
+ 2 types of volumes
+ 1, to persist and share data between containers (when you have 2 containers)
+ 2, lets you share folder between the hosts and container, we can mount a local directory on your computer as volume inside the container then the container When its running will be able to see the files we are working on 
+
+so to mount a volume we have to add -v with local_folder_path:container_path
+
+ $ > sudo docker run -p 80:80 -v /opt/lampp/htdocs/docker/src/:/var/www/html/ fitness-freak
+
+this is usefull during development
+but before we deploy and try to run this image somewhere else we will need to rebuild the image to get an updated copy of the files put inside
+
+Volume just gives running container the ability to see files on the host machines file system they do not change the image 
+But If we want to run this image somewhere else we need to build 
+
+
+
+ $ > docker ps -a
+
+ This command shows us all of our docker containers, running or stopped
+
+ 
+
+FROM ubuntu:latest
+RUN apt-get update
+RUN apt-get install -y wget
+RUN apt-get install -y build-essential tcl8.5
+RUN wget http://download.redis.io/releases/redis-stable.tar.gz
+RUN tar xzf redis-stable.tar.gz
+RUN cd redis-stable && make && make install
+RUN ./redis-stable/utils/install_server.sh
+EXPOSE 6379
+ENTRYPOINT  ["redis-server"]
+
+FROM tells Docker which image to start from. (As you can see, we are starting with Ubuntu. )
+RUN simply runs a shell command. 
+EXPOSE opens up a port to be publically accessible. 6379 is the standard Redis port. 
+ENTRYPOINT designates the command or application to be run when a container is created. 
+
+In this case whenever a container is created from our image, redis-server will be run.
+
+_______________________________________________________________________________________________________

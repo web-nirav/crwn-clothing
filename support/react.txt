@@ -1,0 +1,233 @@
+
+---------------------------------------------
+				React learning
+---------------------------------------------
+
+- sudo npm i -g create-react-app@1.5.2
+- npm i bootstrap@4.1.1
+
+Summary of learning
+- JSX
+- Rendering Lists
+- Conditional Rendering
+- Handling Events
+- Uploading the state
+
+- Passing Data - Props
+- Raise and Handle Events
+- Multiple Components in Sync (Lifting the state)
+- Functional Components 
+- Lifecycle Hooks
+
+imrc and cc short cuts to rect component
+
+zen coding, change js file file language to javascript react 
+Route[path][component]*4 TAB/Enter 
+Wrap with abbreviation
+_______________________full stack react___________________________________________________________
+146 page Done
+
+LEFT chapters
+147 - 176 Advanced Component Configuration with props, state, and children .
+
+177 - 236 Forms
+209 Left from this page
+
+
+237 - 276 Using Webpack with Create React App
+257 Continue it
+
+277 - 366 Unit Testing
+367 - 441 Routing
+
+_________________________MRMH_________________________________________________________
+68 displaying pages,  using loadash
+67 handling page changes event, object destructuring active page selection
+68 paginating data using util folder and new paginate.js file
+71 Type checking, using prop-types, 
+72 Exercise display genres in BS list group
+73 Filtering - Component Interface create component, import to movies, add componentDidmount method and set state of movies and genres and set select genre event
+74 Filtering - Displaying Items
+75 Filtering - Default Props
+76 Filtering - Handling Selection
+77 Filtering - Implementing Filtering
+78 Filtering - Adding "All Genres"
+79 Sorting - Extracting Movies Table, create new SFC named moviesTable and extract and do related changes
+80 Sorting - Raising the sort event, in moviesTable compo raise an event of onSort(passing key values) and handle in parent component as handleSort also resolved the error by setting _id = ''
+81 Sorting - Implementing Sorting
+82 Sorting - Moving the responsibility, promote moviesTable SFC to class compo, then move sortColumn logic from movies to moviesTable as raiseSort
+83 Sorting - Extracting TableHeader
+84 Sorting - Extracting TableBody
+85 Sorting - Rendering Cell Content
+86 Sorting - Unique keys
+87 Sorting - Adding the Sort Icon
+88 Sorting - Extracting Table - create new table component
+89 Sorting - Extracting a method - getPagedData in movies component
+90 destructuring Arguments
+91 Summary - Component Design, Component Interface, Reusable Component, Refactoring, writing clean clode
+
+
+92 Routing and Navigation - Routing parameters, Query string, Redirects, not Found (404) pages, Nested Routing
+93 Setup - Auto Import package of VS Code
+
+Routing functionalities
+94 Adding Routing 4.15 - npm i react-router-dom@4.3.1 
+95 Switch 2.26 - BrowserRouter, Route, Switch, Link, Redirect are component of react router dom package 
+96 Link 4.20
+97 Route Props 2.10
+98 Passing Props 2.35
+99 Route Parameters 3.32
+100 Optional Parameters 2.06
+101 Query String Parameters 3.51 - npm i query-string@6.1.0
+102 Redirects  3.06
+103 Programmatic Navigation 2.20
+104 Nested Routing 4.35
+105 Exercise - NavBar and Routing 1.43
+106 Adding React Router 1.26
+107 Adding Routes 4.57
+108 Adding the NavBar 4.39
+109 Linking to the Movie Form 4.42
+110 Summary 0.31 Route Parameters, Query String, Redirect, Not found(404) pages, Nested Routing
+
+111 Forms 
+112 Building a Bootstrap Form create new login component set up link and add form, wrap with abbreviation
+113 Handling Form Submission
+114 Refs , just a reference of using Refs 
+115 Controlled Elements, setting up form input fields state and use it to manipulate its values
+116 Handling Multiple Inputs using e.currentTarget and set/user name property of input field 
+117 Common Errors, just understanding of setting input field property's state to empty or some proper default value if miss or set null throws error
+118 Extracting a Reusable Input
+119 Validation, setting up errors state property and define validate function which is called from submit form function 
+120 A Basic Validation Implmentation/Function 3:11
+121 Displaying Validation Errors 3:42
+122 Validation on change 4:19
+123 Joi 4:33 installing joi-browser@13.4, import it define schema and call validate method by passing required values 
+124 Validating a form using Joi 4:43
+125 Validating a Field using Joi 5:22
+126 Disabling the Submit button 1:11
+127 Code Review 3:13, just a review of loginForm component that what things can be refactor and make common for other forms and compoenent
+128 Extracting a Reusable Form 4:51
+129 Extracting Helper rendering method 8:18
+130 Register Form 1:42
+131 Code Review 1:10
+132 Exercise 2 - Movie form 3:18
+- Movies page on list page, show new movie button and open new movie form route /movie/new 
+- Form fields, 
+	Title input
+	Genre drop down with values Action, Comedy, Thriller 
+	Number in Stock should be 0 - 100, minus value raise error
+	Rate number between 0-10, if enter -1 or 11 should raise error 
+	Save button 
+- when save button click it should save movie to memory and can see in movie list 
+- from list when click on movie title should open form in edit mode with movei details filled up
+- on edit page, if change movie id from url and enter it should redirect to 404 and when click on back from browser it should redirect to movie edit page 
+- find some bugs from fake movie service and fix those bugs 
+
+133 Code review 8:24
+134 Exercise 3 - Search Movies 1:22
+- adding search box above list of movies and searh by title with case incensitive, should not search mix with genre 
+135 Code Review 5:12
+
+Calling Backend Services
+136 Intro 1:13
+137 JSON Placeholder 2:54, no coding just review http://jsonplaceholder.typicode.com/posts
+138 Http Clients 2:56, no coding install npm i axios@0.18
+139 Getting Data 5:26 call an api and get the data 
+140 Creating data 4:52 adding new post object to server and add to local state too 
+141 Lifecycle of the request 2:50, understanding of Lifecycle of sending req and getting res, when sending req to external server browser send option method 
+142 Updating data 4:14
+143 Deleting data 1:35
+144 Optimistic vs Pesimistic updates 4:24
+145 Expected vs unexpected errors 6:40
+146 Handling unexpected errors globally 7:54 Axios interceptor
+147 Extracting a Reusable Http service 3:43
+148 Extracting a config module 1:36
+149 Displaying a Toast notifications 2:56, npm i react-toastify@4.1
+150 Logging Errors 5:47, npm i raven-js@3.26.4, this videos old version not installed so latest one is, npm install @sentry/browser@5.0.5 install
+151 Extracting a Logger service 4:25, to make it reusable and changeable we abstract new logservice module 
+152 Vidly Backend 1:50, intro to use existing backend which is buit in Node, Express and MongoDB in other node course 
+153 Installing a mongodb on mac 3:58
+	
+	$> brew install mongodb [Install mongodb using homebrew like,]
+	$> sudo mkdir -p /data/db [then create db directory to store all mongodb db]
+	$> sudo chown -R `id -un` /data/db [giving permission to that directory] 
+	$> sudo  mongod --fork --dbpath /var/lib/mongodb --logpath /var/log/mongodb/mongodb.log [to start the mongodb server]
+	$> pgrep mongod [to get process id and will result in 1247]
+	$> sudo kill -9 1247 [to kill mongod process using last step process id then again start mongo server]
+
+154 Installing a mongodb on windows 5:39 can be skipped
+155 Setting up the node backend 1:44, take a clone of node application for vidly back end and set up, also run db seed file 
+156 Disabling Authentication 4:01, when adding new movie it throws Authentication error so we will disable it from config/default.json
+157 Exercise - Connect movies page to the backend 1:56, explain what and how to do in exercise 
+158 Adding Http and Log Services 2:38, copy http and log service files and add to service folder, for log service we will just console log it 
+159 Replacing FakeGenreService 3:23
+160 Replacing FakeMovieService 5:48
+161 Extracting a config file 1:54
+162 Exercise - connect movie form to the backend 0:56
+163 Populating the form 3:45 , display form data and handling 404 exception when movie id is different or not found 
+164 Refactoring 2:30
+165 Saving the movie 2:40
+166 Refactoring 2:36
+
+Authentication and Authorization
+167 Introduction 0:49, 
+	- you will learn in this section JSON Web token, protected APIs, Showing/Hiding Elements, Protecting Routes
+168 Registering a new user 2:37, Testing uses api on postman by sending request 
+169 Submitting a registration form 4:30, create user service module and define register method 
+170 Handling Registration errors 1:58
+171 Logging in a User 1:43
+172 Submitting a Login form 2:23 
+173 Handling a Login errors 1:51
+174 Storing the JWT 3:04
+175 Logging in the user upon Registration 5:37
+	- in node app, in "routes/users.js" file,
+	.header("access-control-expose-headers", "x-auth-token")
+
+176 JSON WEB TOKENs (JWT) 3:59, no code, understanding jwt token and how to decode it on jwt.io 
+177 Getting the current user 4:18 , npm i jwt-decode@2.2.0 
+178 Displaying the current user on Navbar 4:48
+179 Logging out a user 2:44
+180 Refactoring 10:03, put all token related things in authService
+181 Calling protected api Endpoints  4:10, enable authentication on node server side and then pass token in request 
+182 Fixing By-directional dependencies 2:43, http<-->auth setJwt<->getJwt 
+183 Authorization 6:30, understanding how authorization work with auth and admin middleware in node app, set up isAdmin for one user and made it
+184 Showing or Hiding elements based on the user 2:40, passing user to movies component and use it to hide new movie button if user not logged in
+185 Protecting Routes 2:50, explained one way to protect routes if user enter directly in url, inline implementation
+186 Extracting Protected route 5:55, created new ProtectedRotue component and do all conditionals and etc 
+187 Redirecting after login 5:40, for this when we redirect user from ProtectedRotue to login at that time in "to" we will pass object with state 	property which we will user in login form and after login we will use that state property to redirect user to last visited page before he 		redirect to login page 
+188 Exercies 0:19
+189 Hiding the delete column 4:19 
+
+Deployment
+190 Introduction 0:38
+191 Environment variables 4:48
+192 Production builds 2:48, npm run build 
+193 Getting started with Heroku 2:06, just create and account and login from terminal 
+194 MongoDB on cloud 2:35, mlab.com create account and login, [not accepeting new customer from site]
+195 Adding code to git repository 3:05
+196 Deploying to Hiroku 3:01
+	$ sudo snap install --classic heroku [installing heroku cli]
+	$ heroku -v [check version to see if its installed]
+	$ heroku login
+	$ heroku create  [create heroku branch and map to remote heroku branch]
+		https://gentle-fortress-38416.herokuapp.com/ | https://git.heroku.com/gentle-fortress-38416.git 
+	$ git push heroku master [push the code to heroku server]
+	$ heroku open 
+	$ heroku logs
+197 Viewing Logs 2:40, can be seen from heroku site after selecting project or from command line >$ heroku logs
+198 Setting Environment variable on Heroku 4:37
+
+		mongodb+srv://nirav:admin123@cluster0-pw8xf.azure.mongodb.net/test?retryWrites=true
+		mongodb+srv://nirav:admin123@cluster0-pw8xf.azure.mongodb.net/admin?ssl=true&retryWrites=true
+
+	$ heroku config:set vidly_db=mongodb://user_name:password@given.domain.com/from_cloud_server
+	at vidly-api-node app, config/custom-environment-variables.json set up db of remote 
+	after that delploy node app to heroku again , by committing code, push to heroku and open from terminal 
+199 Preparing the front end for deployment 4:09
+	> create .env.production and define react back end api url, remove config variable and in http service file and set up axios default base url
+200 Deploying the front end 2:38
+	> first we will commit all source in git
+	> google, heroku buildpack for create-react-app, https://github.com/mars/create-react-app-buildpack
+	> $ heroku create $APP_NAME --buildpack mars/create-react-app [here we will skip $APP_NAME so it will take unique name itsown]
+	> finally we need to push our code to remote repository 
+201 A Story 2:36
