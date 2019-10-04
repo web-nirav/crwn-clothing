@@ -210,7 +210,7 @@ Second 20 Master Project: Redux-Saga
 
 Sagas are the functions that is listening for some condition to execute and once that condition true saga/function executes 
 Also Other Sagas can listen for sagas to exectue
-they can call any api or call back end fetch data use that data and dispatch action to update the reducers 
+they can call any api or call back-end fetch data use that data and dispatch action to update the reducers 
 THE MAIN IDEA WITH THE SAGAS IS THAT THEY HANDLE THIS IDEA OF SIDE EFFECTS,
 all side effects are either api call to our back end - some kind of Asynchonous code OORR something that triggers IMPURE REACTION 
 
@@ -218,7 +218,7 @@ PURE FUNCTION
 const addNumber = (a, b) => a + b;
 addNumber(3, 4)
 
-impure function takes same arguments and return differnt result 
+impure function takes same arguments and return different result 
 
  let num = 10; 
  const addNewNumber = (a,b) => num+a+b;
@@ -274,10 +274,12 @@ function* gen(i){
 so you can think of "yield" as, ability to pause the excution of function at some point
 this is the basis of sagas, Sagas work on this yield based format because they need to know and give us control over when we want to continue with an execution of the block of the code that we have written OR we wanna do something first
 
+175 redux-saga 
+npm i redux-saga
 
-switching collectionsOverview and collectionsPage to use containers HOC
-updating code to leverage containers for collections-overview and collection-page components
+We are gonna replcing thunks with sagas to handle our async actions inside of redux  
 
+Every generator function should have at least one yield end point 
 
 ALL references links for details reviews
 

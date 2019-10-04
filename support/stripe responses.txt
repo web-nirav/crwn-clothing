@@ -1,0 +1,250 @@
+
+
+// fetching account details
+
+$this->stripe->account()->find($user->stripe_account_id);
+
+{
+  "id": "acct_1Cgr9WFB2Nu90aoN",
+  "object": "account",
+  "business_logo": null,
+  "business_name": "individual",
+  "business_primary_color": null,
+  "business_url": null,
+  "charges_enabled": true,
+  "country": "US",
+  "created": 1529919511,
+  "debit_negative_balances": false,
+  "decline_charge_on": {
+    "avs_failure": false,
+    "cvc_failure": false
+  },
+  "default_currency": "usd",
+  "details_submitted": false,
+  "display_name": null,
+  "email": "paresh.sarkar@indianic.com",
+  "external_accounts": {
+    "object": "list",
+    "data": [
+      {
+        "id": "ba_1DMUyeFB2Nu90aoN2vnzUktc",
+        "object": "bank_account",
+        "account": "acct_1Cgr9WFB2Nu90aoN",
+        "account_holder_name": "Ethan Johnson",
+        "account_holder_type": "individual",
+        "bank_name": "BANK OF AMERICA, N.A.",
+        "country": "US",
+        "currency": "usd",
+        "default_for_currency": true,
+        "fingerprint": "h3kxvsXiA8m4O8Ay",
+        "last4": "6789",
+        "metadata": [
+          
+        ],
+        "routing_number": "111000025",
+        "status": "new"
+      }
+    ],
+    "has_more": false,
+    "total_count": 1,
+    "url": "/v1/accounts/acct_1Cgr9WFB2Nu90aoN/external_accounts"
+  },
+  "legal_entity": {
+    "additional_owners": [
+      
+    ],
+    "address": {
+      "city": null,
+      "country": "US",
+      "line1": null,
+      "line2": null,
+      "postal_code": null,
+      "state": null
+    },
+    "business_name": "individual",
+    "business_tax_id_provided": false,
+    "dob": {
+      "day": 10,
+      "month": 2,
+      "year": 1990
+    },
+    "first_name": "Paresh",
+    "last_name": "Sarkar",
+    "personal_address": {
+      "city": null,
+      "country": "US",
+      "line1": null,
+      "line2": null,
+      "postal_code": null,
+      "state": null
+    },
+    "personal_id_number_provided": false,
+    "ssn_last_4_provided": false,
+    "type": null,
+    "verification": {
+      "details": null,
+      "details_code": null,
+      "document": null,
+      "document_back": null,
+      "status": "unverified"
+    }
+  },
+  "metadata": [
+    
+  ],
+  "payout_schedule": {
+    "delay_days": 2,
+    "interval": "daily"
+  },
+  "payout_statement_descriptor": null,
+  "payouts_enabled": false,
+  "product_description": null,
+  "statement_descriptor": null,
+  "support_address": null,
+  "support_email": null,
+  "support_phone": null,
+  "support_url": null,
+  "timezone": "Etc/UTC",
+  "tos_acceptance": {
+    "date": null,
+    "ip": null,
+    "user_agent": null
+  },
+  "type": "custom",
+  "verification": {
+    "disabled_reason": "fields_needed",
+    "due_by": 1530610711,
+    "fields_needed": [
+      "legal_entity.type",
+      "tos_acceptance.date",
+      "tos_acceptance.ip"
+    ]
+  }
+}
+
+
+
+// sending request to update entity type and tos
+
+// 20181205123443
+// http://localhost:8888/payout-details
+
+{
+  "id": "acct_1Cgr9WFB2Nu90aoN",
+  "object": "account",
+  "business_logo": null,
+  "business_name": "individual",
+  "business_primary_color": null,
+  "business_url": null,
+  "charges_enabled": true,
+  "country": "US",
+  "created": 1529919511,
+  "debit_negative_balances": false,
+  "decline_charge_on": {
+    "avs_failure": false,
+    "cvc_failure": false
+  },
+  "default_currency": "usd",
+  "details_submitted": true,
+  "display_name": null,
+  "email": "paresh.sarkar@indianic.com",
+  "external_accounts": {
+    "object": "list",
+    "data": [
+      {
+        "id": "ba_1DMUyeFB2Nu90aoN2vnzUktc",
+        "object": "bank_account",
+        "account": "acct_1Cgr9WFB2Nu90aoN",
+        "account_holder_name": "Ethan Johnson",
+        "account_holder_type": "individual",
+        "bank_name": "BANK OF AMERICA, N.A.",
+        "country": "US",
+        "currency": "usd",
+        "default_for_currency": true,
+        "fingerprint": "h3kxvsXiA8m4O8Ay",
+        "last4": "6789",
+        "metadata": [
+          
+        ],
+        "routing_number": "111000025",
+        "status": "new"
+      }
+    ],
+    "has_more": false,
+    "total_count": 1,
+    "url": "/v1/accounts/acct_1Cgr9WFB2Nu90aoN/external_accounts"
+  },
+  "legal_entity": {
+    "additional_owners": [
+      
+    ],
+    "address": {
+      "city": null,
+      "country": "US",
+      "line1": null,
+      "line2": null,
+      "postal_code": null,
+      "state": null
+    },
+    "business_name": "individual",
+    "business_tax_id_provided": false,
+    "dob": {
+      "day": 10,
+      "month": 2,
+      "year": 1990
+    },
+    "first_name": "Paresh",
+    "last_name": "Sarkar",
+    "personal_address": {
+      "city": null,
+      "country": "US",
+      "line1": null,
+      "line2": null,
+      "postal_code": null,
+      "state": null
+    },
+    "personal_id_number_provided": false,
+    "ssn_last_4_provided": false,
+    "type": "individual",
+    "verification": {
+      "details": null,
+      "details_code": null,
+      "document": null,
+      "document_back": null,
+      "status": "unverified"
+    }
+  },
+  "metadata": [
+    
+  ],
+  "payout_schedule": {
+    "delay_days": 2,
+    "interval": "daily"
+  },
+  "payout_statement_descriptor": null,
+  "payouts_enabled": true,
+  "product_description": null,
+  "statement_descriptor": null,
+  "support_address": null,
+  "support_email": null,
+  "support_phone": null,
+  "support_url": null,
+  "timezone": "Etc/UTC",
+  "tos_acceptance": {
+    "date": 1543993480,
+    "ip": "127.0.0.1",
+    "user_agent": null
+  },
+  "type": "custom",
+  "verification": {
+    "disabled_reason": null,
+    "due_by": null,
+    "fields_needed": [
+      "legal_entity.address.city",
+      "legal_entity.address.line1",
+      "legal_entity.address.postal_code",
+      "legal_entity.address.state",
+      "legal_entity.ssn_last_4"
+    ]
+  }
+}

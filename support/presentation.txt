@@ -1,0 +1,101 @@
+Presentation
+
+Disclaimer
+
+I know many of you already know this things
+
+
+Few Terms which interrelate each other, VSCode shortcuts and some useful extensions and some coding tips and Extra Credits
+DOD
+Unit Testing - test cases
+Student Syndrom
+    - Student syndrome refers to planned procrastination, when, for example, a student will only start to apply themselves to an assignment at the last possible moment before its deadline. 
+	This eliminates any potential safety margins and puts the person under stress and pressure.
+some coding tips
+
+some coding tips
+Refactor code,
+Validations,
+Multiple Insert/Update main tables and related tables ,
+File uploads,
+Api Calls,
+Email sending,
+and many more things...
+
+Reusable Service classes or Traits or Common functions...
+
+We are using many different kind of code editors but are we really getting most out of it?
+Dreamviewer Rapid php netbeans sublime vscode phpstorm atom and many more available in market...
+difference of editor and IDEs....
+
+code snippets...If you have make some functions or logical code which you think can be useful in future projects then make some document or file and store that small code snippet because we as developer forgets easily![not sure about others but i do] and what we forget is in which project, which section/module which file we have done something.... so better to store that very code snippet in some seperate files
+Similarly, make excel sheet for important information about project like credentials or any important points
+
+We should make some default htaccess file code/content which can cover some common aspect like we discuss in last session that what we need to make sure on production like we miss info.php or .zip or .sql file etc...accessing directory structure or say browsing folders on server...
+Even we can make a checklist(some general points and some spcific to technology and projects) for any deployment so we can not forget anything...
+
+- VSCode shortcuts, extensions etc...VSCode short cuts plugins
+- Laravel specific code guide lines 
+	data_get data_set optional
+	- if else statement, ternery operator, beyond in laravel data_set 
+	- $cond ?? null ;
+
+Extra Credits
+runjs console software
+https://runjs.dev/
+
+Whats Next...
+Some Laravel specific topics...
+superviser
+
+
+General...
+alias or short cuts
+Whenever you learn something either by reading blog post or videos, don't just read or watch, code along so you will get thing on hand and memorize as well,
+firstly you can code watching it and then try to implement something similar without watchin and see what you remember and what not!
+
+Laravel concepts fundamentals like service classes, observers,
+migrations
+data_get, data_set, optional
+migration -> same type length for id and foreign key
+
+
+
+
+
+
+
+
+cybercrowd - cyklekraft code review
+
+
+feedback and what to expect 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

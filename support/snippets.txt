@@ -1,0 +1,56 @@
+
+// sort final array by price
+$sortOrder = data_get(request()->filters, 'sortBy.direction', 'desc') == 'asc' ? SORT_ASC : SORT_DESC;
+$sortedPrice = array_column($arrMarketingProps, 'price_filter_value');
+array_multisort($sortedPrice, $sortOrder, $arrMarketingProps);
+
+
+var list =["Zebra", "Monkey", "Donkey", 'Elephant', 'Ardent']
+list.sort() //[ 'Ardent', 'Donkey', 'Elephant', 'Monkey', 'Zebra' ]
+
+var list =[ 39, 108, 21, 55, 18, 9]
+list.sort() //[108, 18, 21, 39, 55, 9]
+
+var employees=[]
+employees[0]={name:"George", age:32, retiredate:"March 12, 2014"}
+employees[1]={name:"Edward", age:17, retiredate:"June 2, 2023"}
+employees[2]={name:"Christine", age:58, retiredate:"December 20, 2036"}
+employees[3]={name:"Sarah", age:62, retiredate:"April 30, 2020"}
+
+employees.sort(function(a, b){
+    return a.age-b.age
+})
+
+
+
+
+employees.sort(function(a, b){
+    var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+    if (nameA < nameB) //sort string ascending
+        return -1 
+    if (nameA > nameB)
+        return 1
+    return 0 //default return value (no sorting)
+})
+
+
+employees.sort(function(a, b){
+    var dateA=new Date(a.retiredate), dateB=new Date(b.retiredate)
+    return dateA-dateB //sort by date ascending
+})
+
+const filteredData = data.filter((item) => {
+	return (EXPRESSION) ? true : false;
+});
+
+match    => searches a string for a match against a regular expression, and returns the matches, as an Array object.
+includes => determines whether a string contains the characters of a specified string and return boolean 
+search   => searches a string for a specified value, and returns the position of the match.
+
+// if need to simply search or match string 
+var str = "The rain in SPAIN stays mainly in the plain"; 
+var res = str.match(/ain/ig);
+
+// if needs to search dynamic string using variable in match method 
+var keyword = new RegExp(keywordSearch, 'i');
+return title.match(keyword)
