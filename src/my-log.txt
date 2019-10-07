@@ -281,6 +281,24 @@ We are gonna replcing thunks with sagas to handle our async actions inside of re
 
 Every generator function should have at least one yield end point 
 
+
+
+180 Google Sign in to sagas 
+181 Email sign in to sagas 
+we want to change to promise based instead of observer pattern 
+
+182 reviewing our sagas watch for sagas workflow and understand it better 
+
+183 Recreating persistance
+184 and 185 
+
+
+
+
+
+
+
+
 ALL references links for details reviews
 
 https://react-redux.js.org/api/connect

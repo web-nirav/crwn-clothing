@@ -123,6 +123,14 @@ and many more things...
 
 Reusable Service classes or Traits or Common functions...
 
+Refactoring code
+what you have to do in refactor is look at your code and see where it can be improved 
+
+
+
+
+
+
 
 
 Some General Guide-lines 
@@ -190,7 +198,11 @@ Thank you for bearing me :) ...
 
 
 
+Some laravel specific helper methods,
 
+optional
+data_get - date_set 
+array_wrap
 
 
 
