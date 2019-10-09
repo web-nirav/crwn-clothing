@@ -290,13 +290,26 @@ we want to change to promise based instead of observer pattern
 182 reviewing our sagas watch for sagas workflow and understand it better 
 
 183 Recreating persistance
-184 and 185 
+184 and 185 and 186 created sign in sing out cart and sign up sagas 
 
 
+Section 21: Master Project: React Hooks
 
+187 useState hook 
+189 useEffect hook - it gives us the ability to fire side effects from functoinal component 
 
+useState - gets a default state value and returns array with 2 parameters 1, that state value and 2, function which we can use to change that state value so whenever we call this state function the compoenent will rerenders 
 
+useEffect - gets a function that gets called whenever the component changes or updates and re-renders
+useEffect - will always gets call when component rerender so if we want to stop it for subsequent call then we can pass 2nd argument to it 
+    it takes array as 2nd argument and if we left it blank array then it will not fire off again, we can put some property or state value which that effect is depeneded upon so that whenever that property changes useEffect will call again.
 
+Sing in and Sign up component to useState 
+App and Shop component to useEffect 
+
+We only want to user our useEffect in our components that have lifecycle method 
+
+useEffect can return a function which can be used as a clean up function which will be called when component will unmount 
 
 
 ALL references links for details reviews

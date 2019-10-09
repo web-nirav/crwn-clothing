@@ -681,6 +681,147 @@ React Architecturehttps://codeburst.io/your-react-app-is-a-mess-before-you-even-
 
 
 
+===================================VS code===================================
+
+
+extension installed
+
+- PHP intelephense - by Ben mewburn
+- slime theme - by smlombardi
+	- install slime package, reload and active 
+		Shift + Cmd + P find color theme and then find slime and enter to active
+- advance new file - by patbenatar
+- File Utils - by Steffen Leistner
+- snippet creator - by nikitaKunevich
+- php cs fixer
+- DotENV
+- Laravel Artisan
+- Laravel Blade snippets
+- PHP DocBlocker
+- Vetur
+- Vue 2 Snippets
+- PHP Constructor
+- PHP Getter & Setters
+- PHP Namespce Resolver
+
+- Shift + Cmd + X open download extension side bar with 
+
+- Shift + Cmd + E to go to tree view
+
+- Shift + Cmd + F = global search
+
+
+- Ctrl + Alt + N to create new file
+
+- Ctrl + B toggle side bar
+
+- Ctrl + R changed key binding for "go to symbol to" - got to file and look for symbol 
+- Ctrl + Shift + R to go to symbol in whole project
+
+- Ctrl + ` to open up a terminal in editor
+
+- toggle activity bar
+
+- default font family was, 
+	'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'
+	I changed to fira code
+
+- Alt + Enter to open context menu and use some of its options
+
+- can create snippets		
+
+PHP CS Fixer for auto formatting
+- install php cs fixer and check if it runs from command prompt
+- go to .vscode directory and mkdir .php_cs file
+- from vs code Shift + Ctrl + p and search shell to allow workspace shell configuration
+- then from command prompt type $> code .php_cs will open in vs code editor
+- paste the php code in that file
+- then need to give it full path in settings area like so "/home/indianic/.vscode/.php_cs" then it will take effect
+
+
+multiple cursor
+Ctrl + D and keep pressing D to select multiple
+Use Alt and click
+Ctrl + Shift + G to select all together while having cursor on that word
+
+Ctrl + click to go to definition of class file
+
+- Ctrl + Shift + D duplicate the line
+- F5, import namespace
+- F6, expand class path
+- F7, insert constructor property
+
+
+
+
+
+https://blog.bitsrc.io/how-to-write-better-code-in-react-best-practices-b8ca87d462b0
+__________________________________________________________________________________
+// @TODO
+- Review vue pixel application - DONE
+- code node master class - DONE
+- TDD Forum from laracasts going on----------
+- CRUD app using node vue from okta blog site
+- MEVN stack article building
+- Laravel something new
+
+DONE things..................
+Vue pixel drawing application
+node master tutorials work
+swagger tool for api building
+Explore on docker 
+__________________________________________________________________________________
+
+
+
+
+Pending
+- https://coursehunters.net/course/full-stack-prodvinutyy-react-graphql
+- https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api
+- https://coursehunters.net/course/nodejs-polnoe-rukovodstvo-vklyuchaya-mvc-rest-api-graphql
+- https://coursehunters.net/course/udemy-react16-complete-guide 
+- https://coursehunters.net/course/udemy-modern-reactandredux
+- https://coursehunters.net/course/nodejs-v2-udemy
+- https://coursehunters.net/course/master-klass-po-laravel
+- https://coursehunters.net/course/wes-boss-learn-node
+- https://coursehunters.net/course/laravel-kak-instrument-na-primere-sozdaniya-bloga
+- https://coursehunters.net/course/mern-stack-front-to-back-full-stack-react-redux-node-js
+- https://coursehunters.net/course/node-js-express-i-mongodb-ot-razrabotki-do-razvertyvaniya
+- https://coursehunters.net/course/codedojo-nodejs 
+- https://coursehunters.net/course/itvdn-nodejs
+- https://coursehunters.net/course/learn-javascript-ru-nodejs
+- https://coursehunters.net/course/node-js-prodvinutye-temy
+- https://coursehunters.net/course/php_basic
+
+
+Prisma set up for back end to work with GraphQL 
+
+sign up for new account on prisma site, then
+
+on backend side, 
+$ sudo npm i -g prisma
+$ prisma login 
+$ prisma init 
+
+some changes in prisma.yaml and datamodel.prisma and vairables.env file then run,
+$ prisma deply -e vairables.env 
+
+$ prisma console
+
+Make some nice little blog where I can just post whatever solutions I get for nomal programming life for js php laravel react jquery etc...
+
+Whenever you get some solution to some problem just post it there immideatelty 
+like some helpfull links, tools, etc...
+
+
+
+ Git Command helps
+
+- to ignore any file from git versioning even after adding to gitignore file 
+git update-index --assume-unchanged filename
+
+
+
 
 
 

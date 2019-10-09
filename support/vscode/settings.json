@@ -1,0 +1,45 @@
+{
+  "workbench.colorTheme": "Atom One Dark",
+  "workbench.statusBar.visible": true,
+  "explorer.openEditors.visible": 0,
+  "workbench.activityBar.visible": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "editor.fontSize": 16,
+  "terminal.integrated.fontSize": 16,
+  "editor.tabSize": 4,
+  "editor.fontFamily": "Fira Code",
+  "editor.minimap.enabled": false,
+  "editor.tabCompletion": "on",
+  "editor.formatOnSave": true,
+  "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
+  //"php-cs-fixer.onsave": true,
+  "php-cs-fixer.formatHtml": true,
+  "php-cs-fixer.config": "/home/indianic/.vscode/.php_cs;.php_cs.dist",
+  "php-cs-fixer.lastDownload": 1570083616629,
+  "window.zoomLevel": 0,
+  "editor.wordWrap": "on",
+  "editor.lineHeight": 35,
+  "window.titleBarStyle": "custom",
+  "window.menuBarVisibility": "default",
+  "breadcrumbs.enabled": false,
+  "editor.renderControlCharacters": true,
+  "search.useIgnoreFiles": false,
+  "namespaceResolver.sortOnSave": true,
+  "namespaceResolver.showMessageOnStatusBar": true,
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#242b39",
+    "sideBar.background": "#242b39",
+    "editorIndentGuide.background": "#3c475e",
+    "editorIndentGuide.activeBackground": "#46536e",
+    "activityBar.border": "#3c475e",
+    "sideBar.border": "#3c475e",
+    "sideBar.foreground": "#8fa8df"
+  },
+  "mssql.resultsFontSize": 16,
+  "[php]": {
+    "editor.defaultFormatter": "junstyle.php-cs-fixer"
+  },
+  "editor.formatOnSaveTimeout": 5000
+}

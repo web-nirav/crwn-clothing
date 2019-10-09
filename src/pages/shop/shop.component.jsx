@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -22,51 +22,50 @@ import CollectionPageContainer from "../collection/collection.container";
 // const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 // here the match parameter comes from the App component because its loaded using Route component which by default pass all those match, location, etc... props
-class ShopPage extends React.Component {
+const ShopPage = ({ fetchCollectionsStart, match }) => {
   /* state = {
     loading: true
   }; */
 
-  componentDidMount() {
-    const { fetchCollectionsStart } = this.props;
+  useEffect(() => {
     fetchCollectionsStart();
+  }, [fetchCollectionsStart]);
 
-    // const collectionsMap
-    // const { updateCollections } = this.props;
-    // const collectionRef = firestore.collection("collections");
+  // componentDidMount() {
+  // const collectionsMap
+  // const { updateCollections } = this.props;
+  // const collectionRef = firestore.collection("collections");
 
-    /* collectionRef.onSnapshot(snapshot => {
+  /* collectionRef.onSnapshot(snapshot => {
       const collectionsMap = convertCollectionSnaphotToMap(snapshot);
       updateCollections(collectionsMap);
       // console.log(collectionsMap);
     }); */
 
-    // we have changed above to below to show example of async call using promise
-    /* collectionRef.get().then(snapshot => {
+  // we have changed above to below to show example of async call using promise
+  /* collectionRef.get().then(snapshot => {
       const collectionsMap = convertCollectionSnaphotToMap(snapshot);
       updateCollections(collectionsMap);
       this.setState({ loading: false });
     }); */
-  }
+  // }
 
-  render() {
-    const { match } = this.props;
-    return (
-      <div className="shop-page" style={{ padding: "70px" }}>
-        <Route
-          exact
-          path={`${match.path}`}
-          component={CollectionsOverviewContainer}
-        />
-        <Route
-          path={`${match.path}/:collectionId`}
-          component={CollectionPageContainer}
-        />
-      </div>
-    );
+  return (
+    <div className="shop-page" style={{ padding: "70px" }}>
+      <Route
+        exact
+        path={`${match.path}`}
+        component={CollectionsOverviewContainer}
+      />
+      <Route
+        path={`${match.path}/:collectionId`}
+        component={CollectionPageContainer}
+      />
+    </div>
+  );
 
-    // const { loading } = this.state;
-    /* return (
+  // const { loading } = this.state;
+  /* return (
       <div className="shop-page" style={{ padding: "70px" }}>
         <Route
           exact
@@ -83,8 +82,7 @@ class ShopPage extends React.Component {
         />
       </div>
     ); */
-  }
-}
+};
 
 /* const mapDispatchToProps = dispatch => ({
   updateCollections: collectionsMap =>
