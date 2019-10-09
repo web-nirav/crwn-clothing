@@ -29,6 +29,9 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
 
   useEffect(() => {
     fetchCollectionsStart();
+
+    // this is jsut to illustrate the componentWillUnmount lifecycle method to be used with useEffect hooks
+    return () => console.log("Shop component unmounted");
   }, [fetchCollectionsStart]);
 
   // componentDidMount() {

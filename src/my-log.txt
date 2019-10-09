@@ -312,6 +312,19 @@ We only want to user our useEffect in our components that have lifecycle method
 useEffect can return a function which can be used as a clean up function which will be called when component will unmount 
 
 
+
+Section 22: Master Project: Stripe payment part 2 Backend 
+
+$> mkdir client
+$> mv ./* ./client 
+there may be any warning of client folder can not be moved to client folder which can be ignore 
+then in root folder create package.json file 
+$> touch package.json
+$> touch server.js
+copy the package.json content from resources and run npm i
+$> npm install 
+
+
 ALL references links for details reviews
 
 https://react-redux.js.org/api/connect
