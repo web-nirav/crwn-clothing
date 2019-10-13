@@ -64,7 +64,7 @@ Unit Testing
 What is unit testing? 
 How many of you are doing unit testing?
 
-we can do unit test in 2 ways
+we can do unit test in 2 ways,
 - By writting php unit test 
 - Manually which we normally do 
 
@@ -72,7 +72,7 @@ What you do in unit test?
 
 There should be some standard point which we can list down for unit test and for that we can one document of unit test case 
 
-Lets some of the common thing we should test,
+Lets see some of the common thing we should test,
 Designing test - checking the web page should look same in some common browsers
 spelling or grammatical errors
 Broken links and images 
@@ -104,11 +104,6 @@ Difference between editor and IDEs....
 Even we can make a checklist(some general points and some spcific to technology and projects) for any deployment so we can not forget anything...
 
 - VSCode shortcuts, extensions etc...VSCode short cuts plugins
-- Laravel specific code guide lines 
-	data_get data_set optional
-	- if else statement, ternery operator, beyond in laravel data_set 
-	- $cond ?? null ;
-
 
 Some coding Guidelines and Tips
 
@@ -152,6 +147,15 @@ alias or shortcuts
 art = "php artisan"
 
 
+- Laravel specific code guide lines 
+	data_get data_set optional
+	- if else statement, ternery operator, beyond in laravel data_set 
+	- $cond ?? null ;
+Some laravel specific helper methods,
+
+optional
+data_get - date_set 
+array_wrap
 
 Laravel concepts fundamentals like service classes, observers,
 migrations
@@ -198,11 +202,7 @@ Thank you for bearing me :) ...
 
 
 
-Some laravel specific helper methods,
 
-optional
-data_get - date_set 
-array_wrap
 
 
 
