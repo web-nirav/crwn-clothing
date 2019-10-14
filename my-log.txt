@@ -1,0 +1,351 @@
+
+
+- we need to install "node-sass" package to run the scss file
+
+- We need to install "react-router-dom" to work with router and navigations in react 
+
+- when using router, if we need router props in child component then we need to use "withRouter" component of react router dom which is higher order compoent which provides all url or router props directly to child component and we don't need to pass it down from parent component page 
+
+- for any babel related error put this ins package.json file 
+"resolutions": {
+    "babel-jest": "24.7.1"
+  },
+
+  - We are using Firebase for authenticate and bit of storage
+
+  - To use firebase we have to install firebase package into our application and also need to sign up and sign in to firebase site and create new proejct  
+
+firebase project name 
+  crwn-clothing
+
+  crwn-db = app name 
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDs7zutgsZyPhYoD7ALhBCUb9UHYeeEufI",
+    authDomain: "crwn-clothing-53f47.firebaseapp.com",
+    databaseURL: "https://crwn-clothing-53f47.firebaseio.com",
+    projectId: "crwn-clothing-53f47",
+    storageBucket: "",
+    messagingSenderId: "245082220964",
+    appId: "1:245082220964:web:a3c4aad33394e04b"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+sign in forms and firebase settings code required to integrate 
+
+84. Google Sign In Authentication 3
+
+next needs to work on App.js and firebase utitlity js file 
+
+then we gonna work on sign up component and then apply sign up style 
+
+after that we have to bring sign up compoenent into main component 
+
+implemented firebase utils 
+
+LOOK BACK FROM HERE TO REVIEW SOME OF REACT CONCEPTS VIDEO AND SOME OF FIREBASE CONCEPTS VIDEOS
+BEFORE WE MOVE ON TO REDUX review the code from start to firebase 
+
+
+
+
+REDUX 
+- is the library that makes the state management easier not only for react but any tools that we use 
+
+  WHY 
+  - Good for Managing large state 
+  - USerful for sharing data between Components/Containers
+  - Predictable state management using the 3 principle 
+    1. Single source of truth
+      2. State is read only
+        3. Changes using pure function 
+
+          middleware
+  ACTION     -->     ROOT REDUCER --> STORE --> DOM CHANGES
+
+  FLUX PATTERN
+
+  ACTION --> DISPATCHER --> STORE --> VIEW 
+  HAving an action and dispatcher which dispatches this action to the store which is our state which updates our view, one way data flow 
+  FLUX PATTERN - UNIDIRECTIONAL DATA FLOW 
+
+  REDUX === this.state [React]
+
+$ npm install redux redux-logger react-redux [we need these 3 library]
+
+98 setting up redux 1 [can be watched again to understand strcuture of redux set up]
+
+connect()() is higer order component that gets either one of those 2 functions 
+its gonna work like, (connect())() so here we are  connecting response of first connect call to second ()
+
+// from index.js, wrap our enire application with Provider so that we can pass store object and can use it throuhout our application 
+import { Provider } from "react-redux";
+
+// from root-rducer.js file to combine all of our application reducers 
+import { combineReducers } from "redux";
+
+// from store.js to create store object, to apply middleware and imported logger middleware
+import { createStore, applyMiddleware } from "redux";
+import logger from "redux-logger";
+
+// to connect our App with redux store so that we can fetch state and update the state 
+import { connect } from "react-redux";
+
+lession-13
+- modification so that if user is logged in they should not be able to access signupsignin component 
+- UserAction types file 
+
+lession-14
+- setting up cart  component and adding it to header component style and log 
+- Cart dropdown component and place it in header 
+- setting up reducer action to hide show cart dropdown 
+
+continue from 107 
+
+lession 15
+- add to cart styling cusstom button style 
+- add button to collection item and change style of it 
+- cart item reducer 
+
+lession 16 
+- adding item to cart and also adding utility function to add item to cartitems array and increase quantity property 
+
+-STEPS to follow for any action-reducer functionality
+  start with reducer by defining initial state and then checking type of action and return value
+  then go to define type and define action function 
+  then go to compoenent and apply mapStateToProps or mapDispatchToProps 
+
+  lession 17 
+  - create cart item component for our cart and connect cart component to cart reducer 
+
+lession 18
+started from 112 
+
+113 add reselect library 
+npm i reselect
+
+updating our application with reselect replaced cart selector 
+
+lesson 19 
+
+user selector 
+
+116 
+0, false, undefined, null, NaN, "" evaluates to false 
+condition to cart drop down to show message and checkout button click redirect 
+
+117 
+
+
+120
+added checkout page, checkout item component and updated cart to use selectors from reselect
+
+selectors using reselect package is like using accessors/getters 
+
+lession 20 21 22
+remove itesm from cart and checkout page 
+
+123 - 124 Redux Persist
+  npm i redux-persist 
+ 
+ setting up redux persistor and some configuration so that we can locally store data using this library so that we don't have to manually do it everytime
+
+ 125 126 127 
+ here we are just moving Directory state, Collection state to redux so that at the time of testing it can be helpful and its pratice of overall flow 
+and at the end we just create new collection overview compoenent for our next lessons of advance routing because now we will use our shop page to have route landing code 
+
+Data Normalization => storing the list of items in an object instead of an array called data normalization because it make searching faster by dyrectly accessing object element using its key 
+
+Section 13: Master Project: Stripe Payments Part 1
+from 136 to 139 
+for it we have to just install package as below,
+$> npm i react-stripe-checkout 
+
+Section 14: Master Project: Deploying to Production 
+from 140 to 144 
+
+$> heroku --version
+$> heroku login [provide login credentials]
+$> heroku create [PROJECT_NAME] --buildpack https://github.com/mars/create-react-app-buildpack.git
+$> git push heroku master
+$> 
+$> 
+
+during deployment i got one error is about yarn.lock.json and package-lock.json files are there  on github so i had to remove it form local as well from github mainly which heroku takes to deploy. 
+
+so any time you need to update the code on heroku you have to update in local -> push to git hub and then -> push to heroku  
+thats it 
+
+
+Section 15: Master Project: CSS in JS styled-components 
+
+from 145 - 151 
+
+BEFORE START POSSIBLEY THAKE A BACK UP OR NOTE THE COMMIT LEVEL SO ANYTIME IF YOU WANNA HAVE A LOOK OF THE CODE WITHOUT STYLED COMPONENT YOU CAN EASILY CHECK IT OUT 
+
+$> npm i styled-components
+
+homepage and header component , custom button styles 
+
+usage of css function to add common styles for different styled component 
+but we can remove it by using "as" property when we use our style component 
+
+its a middleware which checks to see if there is any function return then it takes it and utilise it 
+thunk is what allows us to dipatch redux function instead of just actions or action objects 
+npm i redux-thunk 
+
+
+Second 20 Master Project: Redux-Saga 
+172 Introduction to Sagas 
+  - Asynchonous API requests 
+
+Sagas are the functions that is listening for some condition to execute and once that condition true saga/function executes 
+Also Other Sagas can listen for sagas to exectue
+they can call any api or call back-end fetch data use that data and dispatch action to update the reducers 
+THE MAIN IDEA WITH THE SAGAS IS THAT THEY HANDLE THIS IDEA OF SIDE EFFECTS,
+all side effects are either api call to our back end - some kind of Asynchonous code OORR something that triggers IMPURE REACTION 
+
+PURE FUNCTION 
+const addNumber = (a, b) => a + b;
+addNumber(3, 4)
+
+impure function takes same arguments and return different result 
+
+ let num = 10; 
+ const addNewNumber = (a,b) => num+a+b;
+ addNewNumber(2,5); output = 17
+ num = 13;
+ addNewNumber(2,5); output = 20
+
+ so this is why its impure funtion (its impure because it does not return exact same value regardless of same arguments)
+ Any async activity that happen to app not related to component state related to application, should be moved to saga 
+ which makes it powerfull
+ just like an API call inside compoenentDidMount()
+
+173 Generator function
+
+building block of Saga which is Generator function 
+Generator function, resembles async-await not axactly asyn-await 
+Generator function stops execution whenever they see specific key that is "yield"
+
+function* gen(){
+    console.log('a');
+    console.log('b');
+}
+
+const g = gen(); // returns generator object and does not execute gen function 
+g.next()
+a
+b
+{value: undefined, done: true} // done prop means if anything is still there to run or not inside gen function 
+
+function* gen(i){
+  yield i;
+  yield i+10;
+}
+
+const g = gen(5)
+const gObj = g.next();
+gObj; // output to {value: 5, done: false} 
+
+here done is false meaning that there is more that can be executed in gen function 
+
+const jObj = g.next();
+jObj; // output to {value: 15, done: false}
+g.next(); 
+{value: undefined, done: true}
+
+for final g.next() call returns undefined in value and true in done but we can set final value by returning value from generator function like so,
+function* gen(i){
+  yield i;
+  yield i+10;
+  return 100;
+}
+
+so you can think of "yield" as, ability to pause the excution of function at some point
+this is the basis of sagas, Sagas work on this yield based format because they need to know and give us control over when we want to continue with an execution of the block of the code that we have written OR we wanna do something first
+
+175 redux-saga 
+npm i redux-saga
+
+We are gonna replcing thunks with sagas to handle our async actions inside of redux  
+
+Every generator function should have at least one yield end point 
+
+
+
+180 Google Sign in to sagas 
+181 Email sign in to sagas 
+we want to change to promise based instead of observer pattern 
+
+182 reviewing our sagas watch for sagas workflow and understand it better 
+
+183 Recreating persistance
+184 and 185 and 186 created sign in sing out cart and sign up sagas 
+
+
+Section 21: Master Project: React Hooks
+
+187 useState hook 
+189 useEffect hook - it gives us the ability to fire side effects from functoinal component 
+
+useState - gets a default state value and returns array with 2 parameters 1, that state value and 2, function which we can use to change that state value so whenever we call this state function the compoenent will rerenders 
+
+useEffect - gets a function that gets called whenever the component changes or updates and re-renders
+useEffect - will always gets call when component rerender so if we want to stop it for subsequent call then we can pass 2nd argument to it 
+    it takes array as 2nd argument and if we left it blank array then it will not fire off again, we can put some property or state value which that effect is depeneded upon so that whenever that property changes useEffect will call again.
+
+Sing in and Sign up component to useState 
+App and Shop component to useEffect 
+
+We only want to user our useEffect in our components that have lifecycle method 
+
+useEffect can return a function which can be used as a clean up function which will be called when component will unmount 
+
+
+
+Section 22: Master Project: Stripe payment part 2 Backend 
+
+$> mkdir client
+$> mv ./* ./client 
+there may be any warning of client folder can not be moved to client folder which can be ignore 
+then in root folder create package.json file 
+$> touch package.json
+$> touch server.js
+copy the package.json content from resources and run npm i
+$> npm install 
+
+$> npm install axios
+
+$> heroku apps
+$> heroku git:remote -a web-nirav-crwn-live 
+
+$> git remote 
+
+$> heroku buildpacks // list down all build packs of project 
+
+$> heroku buildpacks:remove mars/create-react-app-buildpack
+
+ALL references links for details reviews
+
+https://react-redux.js.org/api/connect
+
+https://www.w3schools.com/charsets/ref_utf_dingbats.asp
+
+https://www.npmjs.com/package/reselect
+
+test card details 
+4242 4242 4242 4242,  1/20, 123 
+
+
+
+*444*24*0#
