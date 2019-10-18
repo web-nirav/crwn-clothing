@@ -335,6 +335,71 @@ $> heroku buildpacks // list down all build packs of project
 
 $> heroku buildpacks:remove mars/create-react-app-buildpack
 
+$> git add .
+$> git commit -m "message"
+$> git push heroku master [--force] if any error 
+
+
+set up the heroku env config variable 
+
+$> heroku config:set STRIPE_SECRET_KEY=[your live env key for production]
+
+$> heroku open [to open the project we jsut made live]
+
+
+
+
+
+
+
+Section 23: Master Project: Context API
+
+210 Context consumer + useContext Hook 
+
+Reducer is just an object that stores data that we pull into our component using selector 
+context api you can kind of see like a reducer 
+
+Finished till 215 with context api using useContext hook and done the app in new app 
+
+
+Section 24: Master Project GraphQL + Apollo
+
+221 Introduction to Apollo 
+
+new repo installation 
+https://github.com/ZhangMYihua/graphql-lesson.git
+
+
+$> npm install apollo-boost react-apollo graphql
+
+
+ApolloProvider just allows rest of the application to be able to access the state that is stored on apollo 
+
+createHttpLink this thing let us actually connect to our client to our specific end point that is "/graphql" 
+
+InMemoryCache this is the thing that apollo uses to cache the data
+
+
+
+import { flowRight } from 'lodash';
+
+export default compose(
+  //...code 
+)(CollectionItemContainer);
+
+export default flowRight(
+  // ...code
+)(CollectionItemContainer);
+
+
+
+
+
+
+
+
+
+
 ALL references links for details reviews
 
 https://react-redux.js.org/api/connect
