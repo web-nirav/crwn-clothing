@@ -54,7 +54,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
   // }
 
   return (
-    <div className="shop-page" style={{ padding: "70px" }}>
+    <div className="shop-page">
       <Route
         exact
         path={`${match.path}`}

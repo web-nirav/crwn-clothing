@@ -36,7 +36,6 @@ export const BackgroundImageContainer = styled.div`
 export const MenuItemContainer = styled.div`
   height: ${({ size }) => (size ? "380px" : "240px")};
   min-width: 30%;
-  height: 240px;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
@@ -63,5 +62,8 @@ export const MenuItemContainer = styled.div`
 
   &:last-child {
     margin-left: 7.5px;
+  }
+  @media screen and (max-width: 800px) {
+    height: 200px;
   }
 `;

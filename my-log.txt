@@ -348,7 +348,12 @@ $> heroku open [to open the project we jsut made live]
 
 
 
-
+- Don't optimize the code ahead of time 
+- whenever any compoenent re-render all its child functional compoenent also re-rendered
+- 241. check this for compoenent optimization 
+- 242 performance in our app, using React.memo when exporting functional component 
+- 243 useCallback in functional component whenever we need to define functions in functional component so whenever we call that function and component re-render at that time that function will not re initialize 
+- 244 useMemo is similar to useCallback in that the only change is the function which called on compoenent render the value which is passed to the function calculates some complext callculations so useMemo will store or memoise that value and return it untill the second argument of that function does not change 
 
 
 

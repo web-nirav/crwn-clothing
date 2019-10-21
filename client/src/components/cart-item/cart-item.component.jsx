@@ -15,4 +15,5 @@ const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
   </CartItemContainer>
 );
 
-export default CartItem;
+// just using React.memo so it should only render when new item is added and not for already added items
+export default React.memo(CartItem);
